@@ -12,8 +12,8 @@ const PreAuthScreen = () => {
     }, [])
 
     return (
-        <View style={{ flex: 1 }}>
-            <ActivityIndicator style={{ marginTop: 200 }} size='large' color='black' />
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+            <ActivityIndicator size='large' color='black' />
         </View>
     );
 }

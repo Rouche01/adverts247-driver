@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import NavTabs from '../components/NavTabs';
@@ -35,7 +35,9 @@ const SetupIndexScreen = ({ navigation }) => {
     }, [state])
 
     if(!state.user) {
-        return null;
+        return <View style={{ flex: 1, justifyContent: 'center' }}>
+            <ActivityIndicator size='large' color='black' />
+        </View>;
     }
 
     return (

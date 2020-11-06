@@ -17,23 +17,9 @@ import TripsScreen from './src/screens/TripsScreen';
 import PreAuthScreen from './src/screens/PreAuthScreen';
 import EarningsScreen from './src/screens/EarningsScreen';
 import InformationScreen from './src/screens/InformationScreen';
-import SupportScreen from './src/screens/SupportScreen';
+import SupportScreen from './src/screens/SupportScreen'; 
+import { MaterialIcons, AntDesign, FontAwesome, Feather } from '@expo/vector-icons';
 
-
-const mainFlow = createBottomTabNavigator({
-  Trips: TripsScreen,
-  Earnings: EarningsScreen,
-  Information: InformationScreen,
-  Support: SupportScreen
-})
-
-
-mainFlow.navigationOptions = () => ({
-  tabBarOptions: {
-    activeTintColor: 'red',
-    inactiveTintColor: 'red'
-  }
-})
 
 
 const navigator = createSwitchNavigator({
@@ -50,7 +36,64 @@ const navigator = createSwitchNavigator({
     InsuranceCert: InsuranceCertScreen,
     VehicleReg: VehicleRegScreen
   }),
-  mainFlow
+  mainFlow: createBottomTabNavigator({
+    Trips: {
+      screen: TripsScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <MaterialIcons name="local-taxi" size={24} color={tintColor} />
+        ),
+        tabBarOptions: {
+          activeTintColor: '#f1f1f1',
+          inactiveTintColor: '#8E8E93',
+          activeBackgroundColor: '#0A0A0A',
+          inactiveBackgroundColor: '#0A0A0A'
+        }
+      }
+    },
+    Earnings: {
+      screen: EarningsScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <FontAwesome name="money" size={24} color={tintColor} />
+        ),
+        tabBarOptions: {
+          activeTintColor: '#f1f1f1',
+          inactiveTintColor: '#8E8E93',
+          activeBackgroundColor: '#0A0A0A',
+          inactiveBackgroundColor: '#0A0A0A'
+        }
+      }
+    },
+    Information: {
+      screen: InformationScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Feather name="user" size={24} color={tintColor} />
+        ),
+        tabBarOptions: {
+          activeTintColor: '#f1f1f1',
+          inactiveTintColor: '#8E8E93',
+          activeBackgroundColor: '#0A0A0A',
+          inactiveBackgroundColor: '#0A0A0A'
+        }
+      }
+    },
+    Support: {
+      screen: SupportScreen,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <AntDesign name="questioncircleo" size={24} color={tintColor} />
+        ),
+        tabBarOptions: {
+          activeTintColor: '#f1f1f1',
+          inactiveTintColor: '#8E8E93',
+          activeBackgroundColor: '#0A0A0A',
+          inactiveBackgroundColor: '#0A0A0A'
+        }
+      }
+    }
+  })
 });
 
 

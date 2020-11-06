@@ -1,19 +1,22 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import React, { useContext } from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
+import { Context as AuthContext } from '../context/AuthContext';
 
 
 const SupportScreen = () => {
+
+    const { state } = useContext(AuthContext);
+
     return(
         <View>
-
+            <View>
+                <Image 
+                    source={{ uri: state.user.profilePhoto }}
+                    style={{ height: 70, width: 70 }}
+                />
+            </View>
         </View>
     );
-}
-
-
-SupportScreen.navigationOptions = {
-    tabBarIcon: <AntDesign name="questioncircleo" size={24} color="black" />
 }
 
 
