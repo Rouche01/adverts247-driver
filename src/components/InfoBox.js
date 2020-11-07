@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 
-const InfoBox = ({ mainText, subText, fontSize, color }) => {
+const InfoBox = ({ mainText, subText, fontSize, color, spacing }) => {
     return (
         <View style={styles.infoBox}>
-            <Text style={{ color: 'white', textAlign: 'center' }}>{subText}</Text>
+            <Text style={{ color: 'white', textAlign: 'center', marginBottom: spacing }}>{subText}</Text>
             <Text style={{ color: color, textAlign: 'center', fontSize: fontSize, fontWeight: 'bold' }}>
                 {mainText}
             </Text>

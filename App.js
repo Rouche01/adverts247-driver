@@ -7,6 +7,7 @@ import SignupScreen from './src/screens/SignupScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as UserProvider } from './src/context/UserInfoContext';
+import { Provider as TripProvider } from './src/context/TripContext';
 import SetupIndexScreen from './src/screens/SetupIndexScreen';
 import { setNavigator } from './src/navigationRef';
 import ProfilePhotoScreen from './src/screens/ProfilePhotoScreen';
@@ -103,7 +104,9 @@ export default () => {
   return(
     <UserProvider>
       <AuthProvider>
-        <App ref={(navigator) => setNavigator(navigator)} />
+        <TripProvider>
+          <App ref={(navigator) => setNavigator(navigator)} />
+        </TripProvider>
       </AuthProvider>
     </UserProvider>
   )

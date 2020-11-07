@@ -1,61 +1,101 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
+import { Context as TripContext } from '../context/TripContext';
 import { SafeAreaView } from 'react-navigation';
 import InfoBox from '../components/InfoBox';
+import { AntDesign, Feather } from '@expo/vector-icons';
 
 
 const TripsScreen = () => {
 
-    const { state } = useContext(AuthContext);
+    const { state: { user } } = useContext(AuthContext);
+    const { state: { tripState }, startTrip, endTrip } = useContext(TripContext);
     const [ firstName, setFirstName ] = useState('');
+    const [ switchTheme, setSwitchTheme ] = useState({
+        backgroundColor: 'black',
+        color: '#fff'
+    });
 
     useEffect(() => {
-        if(state.user) {
-            setFirstName(state.user.name.split(' ')[0]);
+        if(user) {
+            setFirstName(user.name.split(' ')[0]);
         }
-    }, [state])
+    }, [user])
+
+    useEffect(() => {
+        if(tripState) {
+            setSwitchTheme({
+                backgroundColor: '#FF3B30',
+                color: 'black'
+            })
+        } else {
+            setSwitchTheme({
+                backgroundColor: 'black',
+                color: '#fff'
+            })
+        }
+    }, [tripState])
+
+    // console.log(tripState);
 
     return (
         <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
             <View style={styles.tripStatus}>
                 <Image 
-                    source={{ uri: state.user.profilePhoto }}
+                    source={{ uri: user.profilePhoto }}
                     style={styles.profilePhoto}
                 />
                 <View style={{ paddingLeft: 15, flex: 1 }}>
-                    <Text style={styles.greetingText}>Good morning, {firstName},</Text>
+                    <Text style={styles.greetingText}>Good morning {firstName},</Text>
                     <Text style={styles.tripStatusText}>You have completed 100 trips in 48 hours</Text>
                 </View>
             </View>
             <View style={styles.tripOverview}>
-                <Text style={{ fontSize: 28, marginBottom: 15, fontWeight: 'bold' }}>Trips Overview</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Text style={{ fontSize: 28, marginBottom: 15, fontWeight: 'bold' }}>Trips Overview</Text>
+                    <Feather name="more-horizontal" size={30} color="black" />
+                </View>
                 <View style={styles.innerTripOverview}>
-                <InfoBox 
-                        mainText="50" 
-                        subText="Trips Completed" 
-                        color="#FF3B30"
-                        fontSize={32}
-                    /> 
-                <InfoBox
-                        mainText="+ 5.23%" 
-                        subText="Percentage Change" 
-                        color="#FFF"
-                        fontSize={22}
-                />
-                <InfoBox 
-                        mainText="10k+" 
-                        subText="Total Earnings" 
-                        color="#4FB81D"
-                        fontSize={32}
-                />
+                    <InfoBox 
+                            mainText="50" 
+                            subText="Trips Completed" 
+                            color="#FF3B30"
+                            fontSize={32}
+                        /> 
+                    <InfoBox
+                            mainText="+ 5.23%" 
+                            subText="Percentage Change" 
+                            color="#FFF"
+                            fontSize={20}
+                            spacing={8}
+                    />
+                    <InfoBox 
+                            mainText="10k+" 
+                            subText="Total Earnings" 
+                            color="#4FB81D"
+                            fontSize={32}
+                    />
                 </View>
             </View>
-            {/* <View style={styles.switchContainer}>
-                <View style={styles.switchStyle}>
-
-                </View>
-            </View> */}
+            <View style={styles.switchContainer}>
+                <TouchableOpacity onPress={() => {
+                    if(tripState) {
+                        endTrip();
+                    } else {
+                        startTrip();
+                    }
+                }}>
+                    <View style={{backgroundColor: switchTheme.backgroundColor, height: 200, width: 200,
+                        borderRadius: 100, justifyContent: 'center'}}>
+                        <AntDesign style={styles.switchIcon} 
+                            name="poweroff" size={100} 
+                            color={switchTheme.color} 
+                        />
+                    </View>
+                </TouchableOpacity>
+                <Text style={styles.switchText}>{ !tripState ? `Start Trip` : `End Trip` }</Text>
+            </View>
         </SafeAreaView>
     )
 }
@@ -63,12 +103,15 @@ const TripsScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15
+        padding: 15,
+        flex: 1,
+        // borderWidth: 1,
+        // borderColor: 'red'
     }, 
     tripStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 55
     },
     profilePhoto: {
         height: 110,
@@ -87,20 +130,23 @@ const styles = StyleSheet.create({
         color: '#828282'
     },
     tripOverview: {
-        marginTop: 45
+        marginTop: 55
     },
     innerTripOverview: {
         flexDirection: 'row',
         flex: 1,
     },
     switchContainer: {
-        marginTop: 50
+        marginTop: 200,
+        alignItems: 'center'
     },
-    switchStyle: {
-        backgroundColor: 'black',
-        height: 150,
-        width: 150,
-        borderRadius: 75
+    switchIcon: {
+        alignSelf: 'center', 
+    },
+    switchText: {
+        fontSize: 28,
+        marginTop: 15,
+        fontWeight: 'bold'
     }
 });
 
