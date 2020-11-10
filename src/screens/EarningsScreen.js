@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
@@ -18,6 +18,15 @@ const EarningsScreen = ({ navigation }) => {
             setFirstName(user.name.split(' ')[0]);
         }
     }, [user]);
+
+
+    const withdrawPayout = () => {
+        if(!user.bankInformation.bank) {
+            Alert.alert('Notice', 'You need to add your bank account information before you can make any withdrawals');
+        } else{
+            console.log('Works');
+        }
+    }
 
     
     if(!user) {
@@ -79,6 +88,7 @@ const EarningsScreen = ({ navigation }) => {
                 containerStyle={{ position: 'absolute', bottom: 50, width: '100%', left: 15 }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
                 titleStyle={{ fontSize: 17 }}
+                onPress={() => withdrawPayout()}
             />
         </SafeAreaView>
     );

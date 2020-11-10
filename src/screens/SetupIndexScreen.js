@@ -89,11 +89,11 @@ const SetupIndexScreen = ({ navigation }) => {
                 <Button 
                     onPress={() => navigation.navigate('mainFlow')}
                     disabled={buttonDisable}
-                    disabledStyle={{ backgroundColor: "#979797", padding: 15, borderRadius: 8 }}
-                    disabledTitleStyle={{ color: '#fff' }}
+                    disabledStyle={{ backgroundColor: "#979797" }}
+                    disabledTitleStyle={{ color: '#fff', opacity: 0.8 }}
                     title="CONTINUE"
                     containerStyle={{ marginTop: 45, marginHorizontal: 15 }}
-                    buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20 }}
+                    buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
                     titleStyle={{ fontSize: 17 }}
                 />
             </View>

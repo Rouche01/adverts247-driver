@@ -9,6 +9,7 @@ import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as UserProvider } from './src/context/UserInfoContext';
 import { Provider as TripProvider } from './src/context/TripContext';
 import { Provider as PaymentProvider } from './src/context/PaymentContext';
+import { Provider as MessageProvider } from './src/context/MessageContext';
 import SetupIndexScreen from './src/screens/SetupIndexScreen';
 import { setNavigator } from './src/navigationRef';
 import ProfilePhotoScreen from './src/screens/ProfilePhotoScreen';
@@ -117,7 +118,9 @@ export default () => {
       <AuthProvider>
         <PaymentProvider>
           <TripProvider>
-            <App ref={(navigator) => setNavigator(navigator)} />
+            <MessageProvider>
+              <App ref={(navigator) => setNavigator(navigator)} />
+            </MessageProvider>
           </TripProvider>
         </PaymentProvider>
       </AuthProvider>

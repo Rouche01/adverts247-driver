@@ -12,6 +12,13 @@ const TransactionsScreen = () => {
 }
 
 
+TransactionsScreen.navigationOptions = {
+    headerStyle: {
+        backgroundColor: 'rgb(33,36,39)',
+    },
+    headerTintColor: '#fff',
+}
+
 
 const styles = StyleSheet.create({
 

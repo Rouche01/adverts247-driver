@@ -8,10 +8,8 @@ const paymentReducer = (state, action) => {
             return { ...state, bankList: action.payload }
         case 'get_account_details':
             return { ...state, userAccountDetails: action.payload }
-        case 'enable_withdraw':
-            return { ...state, enableWithdraw: true }
-        case 'disable_withdraw':
-            return { ...state, enableWithdraw: false }
+        case 'set_loading':
+            return { ...state, loading: action.payload }
         default:
             return state;
     }
@@ -36,8 +34,17 @@ const getBankList = (dispatch) => async() => {
 
 
 
+const clearAccountDetails = (dispatch) => () => {
+    dispatch({
+        type: 'get_account_details',
+        payload: null
+    })
+}
+
+
+
 const confirmUserAccount = (dispatch) => async(account_number, bank_code) => {
-    dispatch({ type: 'disable_withdraw'})
+    dispatch({ type: 'set_loading', payload: true});
     try {
         const response = await paystackApi.get('/bank/resolve', {
             params: {
@@ -49,7 +56,7 @@ const confirmUserAccount = (dispatch) => async(account_number, bank_code) => {
             type: 'get_account_details',
             payload: response.data.data
         })
-        dispatch({ type: 'enable_withdraw'})
+        dispatch({ type: 'set_loading', payload: false});
     } catch(err) {
         dispatch({
             type: 'get_account_details',
@@ -60,6 +67,7 @@ const confirmUserAccount = (dispatch) => async(account_number, bank_code) => {
             type: 'add_error',
             payload: err
         })
+        dispatch({ type: 'set_loading', payload: false});
     }
 };
 
@@ -67,6 +75,6 @@ const confirmUserAccount = (dispatch) => async(account_number, bank_code) => {
 
 export const { Context, Provider } = createDataContext(
     paymentReducer,
-    { getBankList, confirmUserAccount },
-    { bankList: null, userAccountDetails: null, enableWithdraw: false }
+    { getBankList, confirmUserAccount, clearAccountDetails },
+    { bankList: null, userAccountDetails: null, loading: false }
 )
