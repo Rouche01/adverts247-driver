@@ -25,7 +25,7 @@ const ProfilePhotoScreen = ({ navigation }) => {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
             console.log(cloudinaryRef);
-            await updateUser(state.user._id, { profilePhoto: cloudinaryRef.url }, 'DriversLicense', getUser);
+            await updateUser(state.user._id, { profilePhoto: cloudinaryRef.url }, getUser, 'DriversLicense');
             setLoadingState(false);
         } else {
             navigation.navigate('DriversLicense');

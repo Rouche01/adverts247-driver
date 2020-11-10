@@ -24,7 +24,7 @@ const InsuranceCertScreen = ({ navigation }) => {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
             console.log(cloudinaryRef);
-            await updateUser(state.user._id, { insuranceCert: cloudinaryRef.url }, 'VehicleReg', getUser);
+            await updateUser(state.user._id, { insuranceCert: cloudinaryRef.url }, getUser, 'VehicleReg');
             setLoadingState(false)
         } else {
             navigation.navigate('VehicleReg');

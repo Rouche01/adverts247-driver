@@ -9,12 +9,7 @@ const SupportScreen = () => {
 
     return(
         <View>
-            <View>
-                <Image 
-                    source={{ uri: state.user.profilePhoto }}
-                    style={{ height: 70, width: 70 }}
-                />
-            </View>
+            
         </View>
     );
 }

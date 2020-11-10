@@ -8,6 +8,7 @@ import SigninScreen from './src/screens/SigninScreen';
 import { Provider as AuthProvider } from './src/context/AuthContext';
 import { Provider as UserProvider } from './src/context/UserInfoContext';
 import { Provider as TripProvider } from './src/context/TripContext';
+import { Provider as PaymentProvider } from './src/context/PaymentContext';
 import SetupIndexScreen from './src/screens/SetupIndexScreen';
 import { setNavigator } from './src/navigationRef';
 import ProfilePhotoScreen from './src/screens/ProfilePhotoScreen';
@@ -20,6 +21,8 @@ import EarningsScreen from './src/screens/EarningsScreen';
 import InformationScreen from './src/screens/InformationScreen';
 import SupportScreen from './src/screens/SupportScreen'; 
 import { MaterialIcons, AntDesign, FontAwesome, Feather } from '@expo/vector-icons';
+import AddAccountScreen from './src/screens/AddAccountScreen';
+import TransactionsScreen from './src/screens/TransactionsScreen';
 
 
 
@@ -52,8 +55,11 @@ const navigator = createSwitchNavigator({
         }
       }
     },
-    Earnings: {
-      screen: EarningsScreen,
+    earningsFlow: {
+      screen: createStackNavigator({
+        Earnings: EarningsScreen,
+        AddAccount: AddAccountScreen
+      }),
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <FontAwesome name="money" size={24} color={tintColor} />
@@ -63,11 +69,15 @@ const navigator = createSwitchNavigator({
           inactiveTintColor: '#8E8E93',
           activeBackgroundColor: '#0A0A0A',
           inactiveBackgroundColor: '#0A0A0A'
-        }
+        },
+        tabBarLabel: 'Earnings'
       }
     },
-    Information: {
-      screen: InformationScreen,
+    profileFlow: {
+      screen: createStackNavigator({
+        Information: InformationScreen,
+        Transactions: TransactionsScreen
+      }),
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Feather name="user" size={24} color={tintColor} />
@@ -77,7 +87,8 @@ const navigator = createSwitchNavigator({
           inactiveTintColor: '#8E8E93',
           activeBackgroundColor: '#0A0A0A',
           inactiveBackgroundColor: '#0A0A0A'
-        }
+        },
+        tabBarLabel: 'Information'
       }
     },
     Support: {
@@ -104,9 +115,11 @@ export default () => {
   return(
     <UserProvider>
       <AuthProvider>
-        <TripProvider>
-          <App ref={(navigator) => setNavigator(navigator)} />
-        </TripProvider>
+        <PaymentProvider>
+          <TripProvider>
+            <App ref={(navigator) => setNavigator(navigator)} />
+          </TripProvider>
+        </PaymentProvider>
       </AuthProvider>
     </UserProvider>
   )

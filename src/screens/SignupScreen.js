@@ -38,6 +38,7 @@ const SignupScreen = () => {
                     value={firstName}
                     onChange={setFirstName}
                     flexStyle={1}
+                    margin={10}
                  />
                 <CustomInput 
                     label="Last Name"
@@ -46,6 +47,7 @@ const SignupScreen = () => {
                     value={lastName}
                     onChange={setLastName}
                     flexStyle={1}
+                    margin={10}
                 />
             </View>
             <CustomInput 
@@ -54,6 +56,7 @@ const SignupScreen = () => {
                 autoCorrect={false}
                 value={email}
                 onChange={setEmail}
+                margin={10}
             />
             <CustomInput 
                 label="Phone Number"
@@ -61,6 +64,8 @@ const SignupScreen = () => {
                 autoCorrect={false}
                 value={phoneNumber}
                 onChange={setPhoneNumber}
+                margin={10}
+                keyboard='number-pad'
             />
             <CustomInput 
                 label="Password"
@@ -69,6 +74,7 @@ const SignupScreen = () => {
                 value={password}
                 onChange={setPassword}
                 secureTextEntry={true}
+                margin={10}
             />
             <CustomInput 
                 label="City"
@@ -76,6 +82,7 @@ const SignupScreen = () => {
                 autoCorrect={false}
                 value={city}
                 onChange={setCity}
+                margin={10}
             />
             <CustomInput 
                 label="Invite Code"
@@ -83,6 +90,7 @@ const SignupScreen = () => {
                 autoCorrect={false}
                 value={inviteCode}
                 onChange={setInviteCode}
+                margin={10}
             />
             <Text style={styles.legalStyle}>By proceeding , I agree to Adverts 247’s Terms of Use and acknowledge that I have read the Privacy Policy.</Text>
             <Text style={styles.legalStyle}>I also agree that adverts 247 or it’s representatives may contact me by email , phone or SMS (including by automated means) at the email address or number I provide,including for marketing purposes.</Text>

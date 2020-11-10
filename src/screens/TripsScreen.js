@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as TripContext } from '../context/TripContext';
 import { SafeAreaView } from 'react-navigation';
@@ -38,6 +38,12 @@ const TripsScreen = () => {
     }, [tripState])
 
     // console.log(tripState);
+
+    if(!user) {
+        return <View style={{ flex: 1, justifyContent: 'center' }}>
+            <ActivityIndicator size='large' color='black' />
+        </View>;
+    }
 
     return (
         <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>

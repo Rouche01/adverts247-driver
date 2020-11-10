@@ -11,10 +11,14 @@ export default (file) => {
         data.append('upload_preset', 'adverts247Drivers');
         data.append('cloud_name', 'Pureverb');
 
-        const response = await cloudinaryApi.post('/', data);
-        // console.log(response.data);
-        return response.data;
-        // setCloudinaryRef(response.data);
+        try {
+            const response = await cloudinaryApi.post('/', data);
+            // console.log(response.data);
+            return response.data;
+            // setCloudinaryRef(response.data);
+        } catch(err) {
+            return err;
+        }
     }
 
     return [ handleUpload ];

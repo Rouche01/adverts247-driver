@@ -13,7 +13,7 @@ const userReducer = (state, action) => {
 
 
 
-const updateUser = (dispatch) => async(userId, data, routeName, callback) => {
+const updateUser = (dispatch) => async(userId, data, callback, routeName) => {
     try {
         const token = await AsyncStorage.getItem('token');
         await adverts247Api.patch(`/drivers/${userId}`, data, { headers: { 'Authorization': `Bearer ${token}`}});

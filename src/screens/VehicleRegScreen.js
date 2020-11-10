@@ -24,7 +24,7 @@ const VehicleRegScreen = ({ navigation }) => {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
             console.log(cloudinaryRef);
-            await updateUser(state.user._id, { vehicleReg: cloudinaryRef.url }, 'SetupIndex', getUser);
+            await updateUser(state.user._id, { vehicleReg: cloudinaryRef.url }, getUser, 'SetupIndex');
             setLoadingState(false);
         } else {
             navigation.navigate('SetupIndex');

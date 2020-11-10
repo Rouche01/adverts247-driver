@@ -30,6 +30,7 @@ const SigninScreen = () => {
                 autoCorrect={false}
                 autoCapitalize="none"
                 onChange={setEmail}
+                margin={10}
             />
             <CustomInput
                 label="Password"
@@ -38,6 +39,7 @@ const SigninScreen = () => {
                 autoCapitalize="none"
                 onChange={setPassword}
                 secureTextEntry={true}
+                margin={10}
             />
             { state.errorMessage ? <Text style={styles.errorText}>{state.errorMessage}</Text> : null }
             <Button
