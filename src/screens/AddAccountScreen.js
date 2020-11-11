@@ -12,9 +12,9 @@ import SetFormState from '../components/SetFormState';
 
 const AddAccountScreen = () => {
 
-    const { state: { bankList, userAccountDetails, loading }, 
+    const { state: { bankList, userAccountDetails, loading, recipientCode }, 
         getBankList, confirmUserAccount,
-        clearAccountDetails } = useContext(PaymentContext);
+        clearAccountDetails, createRecipient } = useContext(PaymentContext);
     
     const { updateUser } = useContext(UserContext);
     const { state: { user }, getUser } = useContext(AuthContext);
@@ -46,8 +46,10 @@ const AddAccountScreen = () => {
 
     useEffect(() => {
 
-        if(user.bankInformation.bank) {
-            setHasBankInfo(true);
+        if(user.bankInformation) {
+            if(user.bankInformation.bank) {
+                setHasBankInfo(true);
+            }
         }
 
     }, [user])
@@ -63,11 +65,15 @@ const AddAccountScreen = () => {
     useEffect(() => {
 
         if(userAccountDetails) {
+            if(pickedBank) {
+                createRecipient(accountNumber, pickedBank.code, userAccountDetails.account_name);
+            }
             setAccountName(userAccountDetails.account_name);
         } else{
             setAccountName('');
         }
     }, [userAccountDetails])
+
 
 
     const confirmBankAccount = async() => {
@@ -84,7 +90,8 @@ const AddAccountScreen = () => {
                 code: pickedBank.code
             },
             accountNumber,
-            accountName
+            accountName,
+            recipientCode
         }
 
         await updateUser(user._id, {bankInformation}, getUser);
@@ -94,8 +101,9 @@ const AddAccountScreen = () => {
 
     const removeBankAccount = async() => {
         setLoadSaveAccount(true);
-        await updateUser(user._id, {bankInformation: {}}, getUser);
+        await updateUser(user._id, {bankInformation: {}, withdrawalCode: ''}, getUser);
         setPickedBank(null);
+        clearAccountDetails();
         setAccountNumber('');
         setHasBankInfo(false);
         setLoadSaveAccount(false);

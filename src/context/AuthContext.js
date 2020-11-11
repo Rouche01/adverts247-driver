@@ -43,7 +43,6 @@ const signin = (dispatch) => async({ email, password }, callback) => {
             type: 'loading_state',
             payload: false
         })
-        customNavigate('SetupIndex');
     } catch(err) {
         // console.log(err);
         dispatch({
@@ -93,9 +92,10 @@ const tryLocalSignin = (dispatch) => async(callback) => {
             if(callback) {
                 callback();
             }
-            customNavigate('SetupIndex');
+            // customNavigate('SetupIndex');
+            return true;
         } else {
-            customNavigate('AuthPrompt');
+            return false;
         }
     } catch(err) {
         customNavigate('AuthPrompt');

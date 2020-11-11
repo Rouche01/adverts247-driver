@@ -3,13 +3,17 @@ import { View, StyleSheet, Text } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
+import useNavigateAfterLogin from '../hooks/useNavigateAfterLogin';
 
 
 const SigninScreen = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
-    const { state, signin, clearErrorMessage, getUser } = useContext(AuthContext);
+    const { state: { loading, errorMessage }, signin, 
+        clearErrorMessage } = useContext(AuthContext);
+
+    const [ signInAndNavigate ] = useNavigateAfterLogin(email, password);
 
     useEffect(() => {
 
@@ -29,7 +33,12 @@ const SigninScreen = () => {
                 value={email}
                 autoCorrect={false}
                 autoCapitalize="none"
-                onChange={setEmail}
+                onChange={(value) => {
+                    if(errorMessage) {
+                        clearErrorMessage();
+                    }
+                    setEmail(value);
+                }}
                 margin={10}
             />
             <CustomInput
@@ -37,18 +46,23 @@ const SigninScreen = () => {
                 value={password}
                 autoCorrect={false}
                 autoCapitalize="none"
-                onChange={setPassword}
+                onChange={(value) => {
+                    if(errorMessage) {
+                        clearErrorMessage();
+                    }
+                    setPassword(value);
+                }}
                 secureTextEntry={true}
                 margin={10}
             />
-            { state.errorMessage ? <Text style={styles.errorText}>{state.errorMessage}</Text> : null }
+            { errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null }
             <Button
-                onPress={() => {signin({ email, password }, getUser)}}
+                onPress={() => {signInAndNavigate(signin)}}
                 title="SIGN IN"
                 containerStyle={{ marginTop: 70, marginHorizontal: 10 }}
                 buttonStyle={{ backgroundColor: 'rgb(33,36,39)', padding: 15}}
                 titleStyle={{ fontSize: 17 }}
-                loading={state.loading}
+                loading={loading}
             />
         </View>
     );

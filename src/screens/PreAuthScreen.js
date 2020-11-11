@@ -1,14 +1,17 @@
 import React, { useContext, useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
+import useNavigateAfterLogin from '../hooks/useNavigateAfterLogin';
+
 
 
 const PreAuthScreen = () => {
     
     const { tryLocalSignin, getUser } = useContext(AuthContext);
+    const [ localSigninAndNavigate ] = useNavigateAfterLogin();
 
     useEffect(() => {
-        tryLocalSignin(getUser);
+        localSigninAndNavigate(tryLocalSignin);
     }, [])
 
     return (

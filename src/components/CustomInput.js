@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 
 
-const CustomInput = ({ label, autoCapitalize, autoCorrect, value, onChange, flexStyle, secureTextEntry, margin, keyboard, editable }) => {
+const CustomInput = ({ label, autoCapitalize, autoCorrect, value, onChange, flexStyle, secureTextEntry, margin, keyboard, editable, focus }) => {
     return (
         <View style={{ margin: margin, flex: flexStyle, marginBottom: 20 }}>
             {/* <Text style={styles.labelStyle}>{label}</Text> */}
@@ -17,6 +17,7 @@ const CustomInput = ({ label, autoCapitalize, autoCorrect, value, onChange, flex
                 secureTextEntry={secureTextEntry}
                 keyboardType={keyboard}
                 editable={editable}
+                onFocus={focus}
             />
         </View>
     );

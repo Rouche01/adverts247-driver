@@ -4,6 +4,8 @@ import { Button } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
+import { Context as PaymentContext } from '../context/PaymentContext';
+import { Context as UserContext } from '../context/UserInfoContext';
 import InfoBox from '../components/InfoBox';
 import { withNavigation } from 'react-navigation';
 
@@ -11,7 +13,10 @@ import { withNavigation } from 'react-navigation';
 const EarningsScreen = ({ navigation }) => {
 
     const { state: { user } } = useContext(AuthContext);
+    const { state: { error }, initiateTransfer, clearErrors } = useContext(PaymentContext);
+
     const [ firstName, setFirstName ] = useState('');
+    const [ loadingState, setLoadingState ] = useState(false);
 
     useEffect(() => {
         if(user) {
@@ -20,12 +25,34 @@ const EarningsScreen = ({ navigation }) => {
     }, [user]);
 
 
-    const withdrawPayout = () => {
-        if(!user.bankInformation.bank) {
+    useEffect(() => {
+
+        if(error) {
+            Alert.alert('Notice', `${error}`)
+            clearErrors();
+        }
+
+    }, [error])
+
+
+    console.log(user);
+
+
+    const withdrawPayout = async() => {
+
+        setLoadingState(true);
+        const { bank, recipientCode } = user.bankInformation;
+
+        if(!bank) {
             Alert.alert('Notice', 'You need to add your bank account information before you can make any withdrawals');
         } else{
+
             console.log('Works');
+            await initiateTransfer(recipientCode, "2456700");
+            
         }
+
+        setLoadingState(false);
     }
 
     
@@ -89,6 +116,7 @@ const EarningsScreen = ({ navigation }) => {
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
                 titleStyle={{ fontSize: 17 }}
                 onPress={() => withdrawPayout()}
+                loading={loadingState}
             />
         </SafeAreaView>
     );
