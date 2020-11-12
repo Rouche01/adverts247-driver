@@ -22,7 +22,7 @@ const AuthPromptScreen = ({ navigation }) => {
                </ImageBackground>
             </View>
             <View style={styles.callToActionWrapper}>
-                <Text style={styles.welcomeText} h3>Welcome to Adverts247</Text>
+                <Text style={styles.welcomeText}>Welcome to Adverts247</Text>
                 <View style={styles.buttonContainer}>
                     <Button 
                         onPress={() => navigation.navigate('Signin')}
@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     callToActionWrapper: {
-        height: 290,
+        height: '32%',
         width: '100%',
         backgroundColor: 'rgb(33,36,39)',
         padding: 30
     },
     welcomeText: {
         color: 'white',
-        fontSize: 32,
+        fontSize: 35,
         fontWeight: 'normal'
     },
     buttonContainer: {

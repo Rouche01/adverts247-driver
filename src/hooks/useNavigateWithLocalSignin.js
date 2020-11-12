@@ -25,7 +25,6 @@ export default () => {
     }, [loggedIn, user])
 
 
-    console.log(user);
 
     const localSigninAndNavigate = (signinFunc) => {
         

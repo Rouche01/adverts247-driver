@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, StyleSheet, Text, Image, ActivityIndicator } from 'react-native';
 import { Button } from 'react-native-elements';
-import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView, ScrollView } from 'react-navigation';
 import NavTabs from '../components/NavTabs';
 import { Context as AuthContext } from '../context/AuthContext';
-import { Context as UserContext } from '../context/UserInfoContext';
 
 
 const SetupIndexScreen = ({ navigation }) => {
@@ -43,60 +42,62 @@ const SetupIndexScreen = ({ navigation }) => {
     return (
 
         <SafeAreaView forceInset={{ top: 'always' }}>
-            <View style={styles.customHeader}>
-                <Image 
-                    source={require('../assets/logo.png')}
-                    style={{ height: 35, width: 150 }}
-                    resizeMode='contain'
-                />
-                <Button 
-                    onPress={() => signout()}
-                    title="Help"
-                    containerStyle={{ borderRadius: 8 }}
-                    buttonStyle={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
-                    titleStyle={{ color: '#000' }}
-                />
-            </View>
-            <View style={styles.body}>
-                <Text style={styles.mainText}>Welcome, {firstName}</Text>
-                <Text style={styles.subtitleText}>
-                    You need to meet the following steps to set up your account.
-                </Text>
-                <NavTabs 
-                    routeName='ProfilePhoto' 
-                    subText='Recommended next step' 
-                    mainText='Profile Photo'
-                    complete={state.user.profilePhoto} 
-                />
-                <NavTabs 
-                    routeName='DriversLicense'
-                    subText='Get Started' 
-                    mainText="Driver's License"
-                    complete={state.user.driversLicense}
-                />
-                <NavTabs 
-                    routeName='InsuranceCert'
-                    subText='Get Started' 
-                    mainText='Insurance Certificate'
-                    complete={state.user.insuranceCert} 
-                />
-                <NavTabs 
-                    routeName='VehicleReg'
-                    subText='Get Started' 
-                    mainText='Vehicle Registration'
-                    complete={state.user.vehicleReg} 
-                />
-                <Button 
-                    onPress={() => navigation.navigate('mainFlow')}
-                    disabled={buttonDisable}
-                    disabledStyle={{ backgroundColor: "#979797" }}
-                    disabledTitleStyle={{ color: '#fff', opacity: 0.8 }}
-                    title="CONTINUE"
-                    containerStyle={{ marginTop: 45, marginHorizontal: 15 }}
-                    buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                    titleStyle={{ fontSize: 17 }}
-                />
-            </View>
+            <ScrollView>
+                <View style={styles.customHeader}>
+                    <Image 
+                        source={require('../assets/logo.png')}
+                        style={{ height: 35, width: 150 }}
+                        resizeMode='contain'
+                    />
+                    <Button 
+                        onPress={() => signout()}
+                        title="Help"
+                        containerStyle={{ borderRadius: 8 }}
+                        buttonStyle={{ backgroundColor: '#fff', paddingHorizontal: 20 }}
+                        titleStyle={{ color: '#000' }}
+                    />
+                </View>
+                <View style={styles.body}>
+                    <Text style={styles.mainText}>Welcome, {firstName}</Text>
+                    <Text style={styles.subtitleText}>
+                        You need to meet the following steps to set up your account.
+                    </Text>
+                    <NavTabs 
+                        routeName='ProfilePhoto' 
+                        subText='Recommended next step' 
+                        mainText='Profile Photo'
+                        complete={state.user.profilePhoto} 
+                    />
+                    <NavTabs 
+                        routeName='DriversLicense'
+                        subText='Get Started' 
+                        mainText="Driver's License"
+                        complete={state.user.driversLicense}
+                    />
+                    <NavTabs 
+                        routeName='InsuranceCert'
+                        subText='Get Started' 
+                        mainText='Insurance Certificate'
+                        complete={state.user.insuranceCert} 
+                    />
+                    <NavTabs 
+                        routeName='VehicleReg'
+                        subText='Get Started' 
+                        mainText='Vehicle Registration'
+                        complete={state.user.vehicleReg} 
+                    />
+                    <Button 
+                        onPress={() => navigation.navigate('mainFlow')}
+                        disabled={buttonDisable}
+                        disabledStyle={{ backgroundColor: "#979797" }}
+                        disabledTitleStyle={{ color: '#fff', opacity: 0.8 }}
+                        title="CONTINUE"
+                        containerStyle={{ marginTop: 45, marginHorizontal: 15 }}
+                        buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
+                        titleStyle={{ fontSize: 17 }}
+                    />
+                </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }

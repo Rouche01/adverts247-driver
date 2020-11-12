@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
         paddingVertical: 30,
-        flex: 1
+        flex: 4
     },
     mainText: {
         fontSize: 28,

@@ -16,7 +16,7 @@ const DriversLicenseScreen = ({ navigation }) => {
     const { state, getUser } = useContext(AuthContext);
 
     const [ image, handleImagePick ] = useImagePicker([4, 3]);
-    const [ handleUpload ] = useCloudinary(image);
+    const [ handleUpload ] = useCloudinary();
     const [ buttonDisable ] = useDisableButton(state.user.driversLicense, state, image);
 
     const saveDriversLicense = async() => {
@@ -31,7 +31,7 @@ const DriversLicenseScreen = ({ navigation }) => {
         }
     }
 
-    console.log(state);
+    // console.log(state);
 
     return (
         <View style={styles.container}>
@@ -48,7 +48,7 @@ const DriversLicenseScreen = ({ navigation }) => {
                 loading={loadingState}
                 disabled={buttonDisable}
                 title='UPLOAD LICENSE'
-                containerStyle={{ position: 'absolute', bottom: 120, alignSelf: 'center', width: '100%' }}
+                containerStyle={{ flex: 1, width: '100%' }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20  }}
                 titleStyle={{ fontSize: 17 }}
             />

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+import { ScrollView } from 'react-navigation';
 import { AntDesign } from '@expo/vector-icons';
 import useImagePicker from '../hooks/useImagePicker';
 import useCloudinary from '../hooks/useCloudinary';
@@ -16,7 +17,7 @@ const ProfilePhotoScreen = ({ navigation }) => {
     const { updateUser } = useContext(UserContext);
     const { state, getUser } = useContext(AuthContext)
     const [ image, handleImagePick ] = useImagePicker([1, 1]);
-    const [ handleUpload, cancelCloudinarySubscription ] = useCloudinary(image);
+    const [ handleUpload, cancelCloudinarySubscription ] = useCloudinary();
     const [ buttonDisable ] = useDisableButton(state.user.profilePhoto, state, image);
 
 
@@ -72,23 +73,25 @@ const ProfilePhotoScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.mainText}>Take your profile photo</Text>
-            <Text style={styles.subText}>Note: Your profile should meet the following requirement.</Text>
-            <View style={styles.requirementList}>
-                <Text style={styles.requirement}>1. Show your whole face and tops of your shoulders.</Text>
-                <Text style={styles.requirement}>2. Take your sunglasses and hat off.</Text>
-                <Text style={styles.requirement}>3. Take your photo in a well-lit place.</Text>
+            <View style={{ flex: 5 }}>
+                <Text style={styles.mainText}>Take your profile photo</Text>
+                <Text style={styles.subText}>Note: Your profile should meet the following requirement.</Text>
+                <View style={styles.requirementList}>
+                    <Text style={styles.requirement}>1. Show your whole face and tops of your shoulders.</Text>
+                    <Text style={styles.requirement}>2. Take your sunglasses and hat off.</Text>
+                    <Text style={styles.requirement}>3. Take your photo in a well-lit place.</Text>
+                </View>
+                <TouchableOpacity style={styles.avatarPlaceholder} 
+                    onPress={() => handleImagePick()}>
+                    {resolveImage()}
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.avatarPlaceholder} 
-                onPress={() => handleImagePick()}>
-                {resolveImage()}
-            </TouchableOpacity>
             <Button 
                 onPress={() => { saveProfileImage() }}
                 loading={loadingState}
                 disabled={buttonDisable}
                 title='UPLOAD PHOTO'
-                containerStyle={{ position: 'absolute', bottom: 120, alignSelf: 'center', width: '100%'  }}
+                containerStyle={{ flex: 1, width: '100%'  }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
                 titleStyle={{ fontSize: 17 }}
             />

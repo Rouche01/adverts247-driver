@@ -1,11 +1,11 @@
 import cloudinaryApi from '../api/cloudinaryApi';
 
 
-export default (file) => {
+export default () => {
 
     // let cloudinaryRef;
     const source = cloudinaryApi.CancelToken.source();
-    console.log(source);
+    // console.log(source);
 
     const handleUpload = async(file) => {
         const data = new FormData();
@@ -28,7 +28,7 @@ export default (file) => {
     }
 
     const cancelCloudinarySubscription = () => {
-        console.log(source);
+        // console.log(source);
         source.cancel()
     }
 

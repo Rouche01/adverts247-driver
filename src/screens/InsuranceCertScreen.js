@@ -48,7 +48,7 @@ const InsuranceCertScreen = ({ navigation }) => {
                 loading={loadingState}
                 disabled={buttonDisable}
                 title='UPLOAD CERTIFICATE'
-                containerStyle={{ position: 'absolute', bottom: 120, alignSelf: 'center', width: '100%' }}
+                containerStyle={{ flex: 1, width: '100%' }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20  }}
                 titleStyle={{ fontSize: 17 }}
             />

@@ -77,7 +77,7 @@ const SignupScreen = () => {
             }
         }
 
-        console.log(errorsInit);
+        // console.log(errorsInit);
 
         setValidationErrors(errorsInit);
 
@@ -92,7 +92,7 @@ const SignupScreen = () => {
     const onSignup = () => {
 
         const validated = validateInput();
-        console.log(validated);
+        // console.log(validated);
         if(validated) {
             signup({ email, name: `${firstName} ${lastName}`, phoneNumber, password, city }, getUser);
         } 

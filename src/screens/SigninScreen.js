@@ -32,7 +32,6 @@ const SigninScreen = () => {
                 [
                     {
                       text: 'Try again',
-                      onPress: () => console.log('Ask me later pressed')
                     },
                 ]
             )

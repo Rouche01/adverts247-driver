@@ -86,7 +86,7 @@ const signup = (dispatch) => async (signupData, callback) => {
 const tryLocalSignin = (dispatch) => async(callback) => {
     try {
         const token = await AsyncStorage.getItem('token');
-        console.log(token);
+        // console.log(token);
         if(token) {
             dispatch({
                 type: 'signin',
@@ -95,7 +95,6 @@ const tryLocalSignin = (dispatch) => async(callback) => {
             if(callback) {
                 callback();
             }
-            // customNavigate('SetupIndex');
             dispatch({ type: 'set_user_state', payload: true });
         } else {
             dispatch({ type: 'set_user_state', payload: false });
