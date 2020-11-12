@@ -13,8 +13,16 @@ const SignupScreen = () => {
     const [ password, setPassword ] = useState('');
     const [ city, setCity ] = useState('');
     const [ inviteCode, setInviteCode ] = useState('');
+    const [ validationErrors, setValidationErrors ] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        city: ''
+    });
 
-    const { state, signup, clearErrorMessage, getUser } = useContext(AuthContext);
+    const { state, signup, clearErrorMessage, getUser, errorMessage } = useContext(AuthContext);
 
     // console.log(state);
 
@@ -24,6 +32,71 @@ const SignupScreen = () => {
             clearErrorMessage();
         }
     }, [])
+
+
+    useEffect(() => {
+
+        if(errorMessage) {
+            Alert.alert(
+                'Signup Error',
+                'An error occured while trying to sign up, make sure you are filling in accurate details and try again',
+                [
+                    {
+                        text: 'Try again',
+                    }
+                ]
+            );
+            clearErrorMessage();
+        }
+
+    }, [errorMessage])
+
+
+    const validateInput = () => {
+
+        let validMail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        let validPhoneNumber = /^[0]\d{10}$/;
+
+        const errorsInit = {}
+
+        let fields = {firstName, lastName, email, phoneNumber, password, city};
+
+        for(const key in fields) {
+            if(!fields[key]) {
+                errorsInit[key] = "This field is required";
+            }
+            if(fields.email && !fields.email.match(validMail)) {
+                errorsInit.email = "Please enter a valid email address"
+            }
+            if(fields.phoneNumber && !fields.phoneNumber.match(validPhoneNumber)) {
+                errorsInit.phoneNumber = "Looks like your phone number is incorrect. Enter a valid one"
+            }
+            if(fields.password && fields.password.length < 6) {
+                errorsInit.password = "Password must be at least 6 characters"
+            }
+        }
+
+        console.log(errorsInit);
+
+        setValidationErrors(errorsInit);
+
+        if(Object.entries(errorsInit).length === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    const onSignup = () => {
+
+        const validated = validateInput();
+        console.log(validated);
+        if(validated) {
+            signup({ email, name: `${firstName} ${lastName}`, phoneNumber, password, city }, getUser);
+        } 
+    }
 
 
     return (
@@ -36,18 +109,30 @@ const SignupScreen = () => {
                     autoCapitalize="words"
                     autoCorrect={false}
                     value={firstName}
-                    onChange={setFirstName}
+                    onChange={(value) => {
+                        setValidationErrors({...validationErrors, firstName: ''});
+                        setFirstName(value);
+                    }}
                     flexStyle={1}
                     margin={10}
+                    validationError={
+                        validationErrors.firstName && validationErrors.firstName.length > 0 ? validationErrors.firstName : null
+                    }
                  />
                 <CustomInput 
                     label="Last Name"
                     autoCapitalize="words"
                     autoCorrect={false} 
                     value={lastName}
-                    onChange={setLastName}
+                    onChange={(value) => {
+                        setValidationErrors({...validationErrors, lastName: ''});
+                        setLastName(value);
+                    }}
                     flexStyle={1}
                     margin={10}
+                    validationError={
+                        validationErrors.lastName && validationErrors.lastName.length > 0 ? validationErrors.lastName : null
+                    }
                 />
             </View>
             <CustomInput 
@@ -55,34 +140,58 @@ const SignupScreen = () => {
                 autoCapitalize="none"
                 autoCorrect={false}
                 value={email}
-                onChange={setEmail}
+                onChange={(value) => {
+                    setValidationErrors({...validationErrors, email: ''});
+                    setEmail(value);
+                }}
                 margin={10}
+                validationError={
+                    validationErrors.email && validationErrors.email.length > 0 ? validationErrors.email : null
+                }
             />
             <CustomInput 
                 label="Phone Number"
                 autoCapitalize="none"
                 autoCorrect={false}
                 value={phoneNumber}
-                onChange={setPhoneNumber}
+                onChange={(value) => {
+                    setValidationErrors({...validationErrors, phoneNumber:''});
+                    setPhoneNumber(value);
+                }}
                 margin={10}
                 keyboard='number-pad'
+                validationError={
+                    validationErrors.phoneNumber && validationErrors.phoneNumber.length > 0 ? validationErrors.phoneNumber : null
+                }
             />
             <CustomInput 
                 label="Password"
                 autoCapitalize="none"
                 autoCorrect={false}
                 value={password}
-                onChange={setPassword}
+                onChange={(value) => {
+                    setValidationErrors({...validationErrors, password: ''});
+                    setPassword(value);
+                }}
                 secureTextEntry={true}
                 margin={10}
+                validationError={
+                    validationErrors.password && validationErrors.password.length > 0 ? validationErrors.password : null
+                }
             />
             <CustomInput 
                 label="City"
                 autoCapitalize="words"
                 autoCorrect={false}
                 value={city}
-                onChange={setCity}
+                onChange={(value) => {
+                    setValidationErrors({...validationErrors, city: ''});
+                    setCity(value);
+                }}
                 margin={10}
+                validationError={
+                    validationErrors.city && validationErrors.city.length > 0 ? validationErrors.city : null
+                }
             />
             <CustomInput 
                 label="Invite Code"
@@ -99,9 +208,7 @@ const SignupScreen = () => {
                 containerStyle={{ marginTop: 30, marginHorizontal: 10, marginBottom: 60 }}
                 buttonStyle={{ backgroundColor: 'rgb(33,36,39)', padding: 15}}
                 titleStyle={{ fontSize: 17 }}
-                onPress={
-                    () => signup({ email, name: `${firstName} ${lastName}`, phoneNumber, password, city }, getUser)
-                }
+                onPress={() => onSignup()}
                 loading={state.loading}
             />
         </ScrollView>

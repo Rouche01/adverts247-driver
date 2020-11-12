@@ -4,6 +4,8 @@ import cloudinaryApi from '../api/cloudinaryApi';
 export default (file) => {
 
     // let cloudinaryRef;
+    const source = cloudinaryApi.CancelToken.source();
+    console.log(source);
 
     const handleUpload = async(file) => {
         const data = new FormData();
@@ -11,15 +13,24 @@ export default (file) => {
         data.append('upload_preset', 'adverts247Drivers');
         data.append('cloud_name', 'Pureverb');
 
+
         try {
-            const response = await cloudinaryApi.post('/', data);
+            const response = await cloudinaryApi.post('/', data, { cancelToken: source.token });
             // console.log(response.data);
             return response.data;
             // setCloudinaryRef(response.data);
-        } catch(err) {
-            return err;
+        } catch(error) {
+            if(!cloudinaryApi.isCancel(error)) {
+                return error;
+            }
+
         }
     }
 
-    return [ handleUpload ];
+    const cancelCloudinarySubscription = () => {
+        console.log(source);
+        source.cancel()
+    }
+
+    return [ handleUpload, cancelCloudinarySubscription ];
 }

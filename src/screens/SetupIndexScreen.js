@@ -50,7 +50,7 @@ const SetupIndexScreen = ({ navigation }) => {
                     resizeMode='contain'
                 />
                 <Button 
-                    // onPress={() => signout()}
+                    onPress={() => signout()}
                     title="Help"
                     containerStyle={{ borderRadius: 8 }}
                     buttonStyle={{ backgroundColor: '#fff', paddingHorizontal: 20 }}

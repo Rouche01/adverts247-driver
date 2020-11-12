@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Alert } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -21,6 +21,25 @@ const SigninScreen = () => {
             clearErrorMessage();
         }
     }, []);
+
+
+    useEffect(() => {
+
+        if(errorMessage) {
+            Alert.alert(
+                "Login Error", 
+                "There was an error logging in, try again with the correct credentials",
+                [
+                    {
+                      text: 'Try again',
+                      onPress: () => console.log('Ask me later pressed')
+                    },
+                ]
+            )
+            clearErrorMessage();
+        }
+
+    }, [errorMessage])
 
     // console.log(state.loading);
 
@@ -55,7 +74,6 @@ const SigninScreen = () => {
                 secureTextEntry={true}
                 margin={10}
             />
-            { errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null }
             <Button
                 onPress={() => {signInAndNavigate(signin)}}
                 title="SIGN IN"

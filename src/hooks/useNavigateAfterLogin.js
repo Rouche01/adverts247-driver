@@ -23,6 +23,7 @@ export default (email, password) => {
 
     const signInAndNavigate = (signinFunc) => {
 
+        console.log('works2');
         if(email && password) {
             signinFunc({email, password}, getUser);
         } else {
@@ -33,7 +34,9 @@ export default (email, password) => {
 
     const localSigninAndNavigate = async (signinFunc) => {
         
+        console.log('signedIn');
         const signedIn = await signinFunc(getUser);
+        
 
         if(!signedIn) {
             customNavigate('AuthPrompt');

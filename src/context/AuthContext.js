@@ -18,6 +18,8 @@ const authReducer = (state, action) => {
             return { ...state, user: action.payload.user }
         case 'loading_state':
             return { ...state, loading: action.payload }
+        case 'set_user_state':
+            return { ...state, loggedIn: action.payload }
         default:
             return state;
     }
@@ -84,6 +86,7 @@ const signup = (dispatch) => async (signupData, callback) => {
 const tryLocalSignin = (dispatch) => async(callback) => {
     try {
         const token = await AsyncStorage.getItem('token');
+        console.log(token);
         if(token) {
             dispatch({
                 type: 'signin',
@@ -93,9 +96,10 @@ const tryLocalSignin = (dispatch) => async(callback) => {
                 callback();
             }
             // customNavigate('SetupIndex');
-            return true;
+            dispatch({ type: 'set_user_state', payload: true });
         } else {
-            return false;
+            dispatch({ type: 'set_user_state', payload: false });
+            customNavigate('AuthPrompt');
         }
     } catch(err) {
         customNavigate('AuthPrompt');
@@ -139,5 +143,5 @@ const clearErrorMessage = (dispatch) => async() => {
 export const { Context, Provider } = createDataContext(
     authReducer,
     { signin, signup, tryLocalSignin, signout, clearErrorMessage, getUser },
-    { token: null, errorMessage: '', user: null, loading: false }
+    { token: null, errorMessage: '', user: null, loading: false, loggedIn: false }
 );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { AntDesign } from '@expo/vector-icons';
@@ -16,8 +16,18 @@ const ProfilePhotoScreen = ({ navigation }) => {
     const { updateUser } = useContext(UserContext);
     const { state, getUser } = useContext(AuthContext)
     const [ image, handleImagePick ] = useImagePicker([1, 1]);
-    const [ handleUpload ] = useCloudinary(image);
-    const [ buttonDisable ] = useDisableButton(state.user.profilePhoto, state, image)
+    const [ handleUpload, cancelCloudinarySubscription ] = useCloudinary(image);
+    const [ buttonDisable ] = useDisableButton(state.user.profilePhoto, state, image);
+
+
+    useEffect(() => {
+
+        return () => {
+
+            cancelCloudinarySubscription();
+        }
+
+    }, []);
 
 
     const saveProfileImage = async() => {
@@ -25,7 +35,13 @@ const ProfilePhotoScreen = ({ navigation }) => {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
             console.log(cloudinaryRef);
-            await updateUser(state.user._id, { profilePhoto: cloudinaryRef.url }, getUser, 'DriversLicense');
+            if(cloudinaryRef) {
+                await updateUser(
+                    state.user._id, 
+                    { profilePhoto: cloudinaryRef.url }, 
+                    getUser, 'DriversLicense'
+                );
+            }
             setLoadingState(false);
         } else {
             navigation.navigate('DriversLicense');
@@ -52,7 +68,7 @@ const ProfilePhotoScreen = ({ navigation }) => {
         }
     }
 
-    console.log(state);
+    // console.log(state);
 
     return (
         <View style={styles.container}>
