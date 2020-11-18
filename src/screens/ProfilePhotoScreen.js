@@ -8,6 +8,7 @@ import useCloudinary from '../hooks/useCloudinary';
 import useDisableButton from '../hooks/useDisableButton';
 import { Context as UserContext } from '../context/UserInfoContext';
 import { Context as AuthContext } from '../context/AuthContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const ProfilePhotoScreen = ({ navigation }) => {
@@ -93,7 +94,7 @@ const ProfilePhotoScreen = ({ navigation }) => {
                 title='UPLOAD PHOTO'
                 containerStyle={{ flex: 1, width: '100%'  }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
             />
         </View>
     );
@@ -119,38 +120,38 @@ ProfilePhotoScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
-        paddingVertical: 30,
+        paddingHorizontal: wp('3.4%'),
+        paddingTop: 30,
         flex: 1
     },
     mainText: {
-        fontSize: 28,
+        fontSize: hp('3.4%'),
         fontWeight: 'bold',
     },
     subText: {
-        fontSize: 16,
+        fontSize: hp('1.9%'),
         marginTop: 8
     },
     requirementList: {
-        marginTop: 20
+        marginTop: hp('3%')
     },
     requirement: {
         color: '#8E8E93',
         fontSize: 14
     },
     avatarPlaceholder: {
-        width: 250,
-        height: 250,
+        width: hp('30%'),
+        height: hp('30%'),
         backgroundColor: '#D7D7D7',
         borderRadius: 125,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        marginTop: 60
+        marginTop: hp('5%')
     },
     avatar: {
-        width: 250,
-        height: 250,
+        width: hp('30%'),
+        height: hp('30%'),
         borderRadius: 125,
         position: 'absolute'
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 
@@ -87,19 +88,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopWidth: 1,
         // borderBottomWidth: 1,
-        paddingVertical: 10,
+        paddingVertical: hp('1.8%'),
         borderColor: '#ddd'
     },
     amount: {
-        fontSize: 22,
+        fontSize: hp('2.8%'),
         fontWeight: 'bold'
     },
     time: {
-        color: 'gray'
+        color: 'gray',
+        fontSize: hp('1.6%')
     },
     transactionStatus: {
-        fontSize: 15,
-        paddingHorizontal: 20,
+        fontSize: hp('1.5%'),
+        paddingHorizontal: wp('4%'),
         paddingVertical: 2,
         borderRadius: 20,
     }

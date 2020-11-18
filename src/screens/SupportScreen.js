@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as MessageContext } from '../context/MessageContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const SupportScreen = () => {
@@ -42,9 +43,9 @@ const SupportScreen = () => {
                 />
                 <Button 
                     title="SEND MESSAGE"
-                    containerStyle={{ marginTop: 55 }}
+                    containerStyle={{ marginTop: hp('5%') }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                    titleStyle={{ fontSize: 17 }}
+                    titleStyle={{ fontSize: hp('2%') }}
                     loading={loading}
                     disabled={buttonState}
                     disabledStyle={{ backgroundColor: "#979797" }}
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
         padding: 20
     },
     titleText: {
-        fontSize: 26,
+        fontSize: hp('3.1%'),
         fontWeight: 'bold',
         marginTop: 40
     },
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     label: {
-        fontSize: 18
+        fontSize: hp('2.2%')
     },
     supportInput: {
         width: '100%',

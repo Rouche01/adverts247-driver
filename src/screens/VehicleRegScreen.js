@@ -50,7 +50,7 @@ const VehicleRegScreen = ({ navigation }) => {
                 title='UPLOAD LICENSE'
                 containerStyle={{ flex: 1, width: '100%' }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20  }}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
             />
         </View>
     );

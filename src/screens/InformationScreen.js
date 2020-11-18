@@ -7,6 +7,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { Context as UserContext } from '../context/UserInfoContext';
 import useImagePicker from '../hooks/useImagePicker';
 import useCloudinary from '../hooks/useCloudinary';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const InformationScreen = ({ navigation }) => {
@@ -105,21 +106,21 @@ const InformationScreen = ({ navigation }) => {
                 <View style={styles.headerButton}>
                     <Button 
                         title="Transactions"
-                        containerStyle={{ marginRight: 10 }}
-                        titleStyle={{ fontSize: 16 }}
+                        containerStyle={{ marginRight: wp('2%') }}
+                        titleStyle={{ fontSize: hp('1.85%') }}
                         buttonStyle={{ paddingHorizontal: 12, borderRadius: 10, backgroundColor: 'black' }}
                         onPress={() => navigation.navigate('Transactions')}
                     />
                     <Button 
                         title="Log out"
                         containerStyle={{  }}
-                        titleStyle={{ fontSize: 16 }}
+                        titleStyle={{ fontSize: hp('1.85%') }}
                         buttonStyle={{ paddingHorizontal: 12, borderRadius: 10, backgroundColor: '#FF3B30' }}
                         onPress={signout}
                     />
                 </View>
             </View>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <TouchableOpacity 
                     style={styles.profilePhoto}
                     onPress={() => handleImagePick()}
@@ -133,7 +134,7 @@ const InformationScreen = ({ navigation }) => {
                     style={{ alignItems: 'center', marginTop: 10 }} 
                     onPress={() => handleImagePick()}
                 >
-                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'gray'}}>CHANGE PHOTO</Text>
+                    <Text style={{ fontSize: hp('2.07%'), fontWeight: 'bold', color: 'gray'}}>CHANGE PHOTO</Text>
                 </TouchableOpacity>
                 <View style={styles.profileForm}>
                 <View style={{ flexDirection: 'row' }}>
@@ -187,9 +188,9 @@ const InformationScreen = ({ navigation }) => {
                 </View>
                 <Button 
                     title="SAVE CHANGES"
-                    containerStyle={{ marginTop: 30, marginHorizontal: 5 }}
+                    containerStyle={{ marginTop: hp('4%'), marginHorizontal: 5 }}
                     buttonStyle={{ backgroundColor: 'rgb(33,36,39)', padding: 15}}
-                    titleStyle={{ fontSize: 17 }}
+                    titleStyle={{ fontSize: hp('2%') }}
                     loading={loadingState}
                     onPress={() => saveChanges()}
                 />
@@ -213,10 +214,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 40
+        marginTop: hp('3.7%')
     },
     headerText: {
-        fontSize: 24,
+        fontSize: hp('2.8%'),
         fontWeight: 'bold'
     },
     headerButton: {
@@ -224,23 +225,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     profilePhoto: {
-        width: 150,
-        height: 150,
+        width: wp('35%'),
+        height: wp('35%'),
         backgroundColor: '#D7D7D7',
         borderRadius: 75,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        marginTop: 50
+        marginTop: hp('5.2%')
     },
     avatar: {
-        width: 150,
-        height: 150,
+        width: wp('35%'),
+        height: wp('35%'),
         borderRadius: 75,
         position: 'absolute'
     },
     profileForm: {
-        marginTop: 40
+        marginTop: hp('4.4%')
     }
 });
 

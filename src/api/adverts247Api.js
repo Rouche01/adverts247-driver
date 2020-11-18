@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 let instance = axios.create({
-    baseURL: `https://salty-bayou-92177.herokuapp.com/`
+    baseURL: `http://a2b30da4523f.ngrok.io`
 });
 
 

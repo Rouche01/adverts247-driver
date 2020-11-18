@@ -6,6 +6,7 @@ import { Context as TripContext } from '../context/TripContext';
 import { SafeAreaView } from 'react-navigation';
 import InfoBox from '../components/InfoBox';
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const TripsScreen = () => {
@@ -61,28 +62,27 @@ const TripsScreen = () => {
                 </View>
                 <View style={styles.tripOverview}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 28, marginBottom: 15, fontWeight: 'bold' }}>Trips Overview</Text>
-                        <Feather name="more-horizontal" size={30} color="black" />
+                        <Text style={{ fontSize: hp('3.2%'), marginBottom: 15, fontWeight: 'bold' }}>Trips Overview</Text>
                     </View>
                     <View style={styles.innerTripOverview}>
                         <InfoBox 
                                 mainText="50" 
                                 subText="Trips Completed" 
                                 color="#FF3B30"
-                                fontSize={32}
+                                fontSize={3.5}
                             /> 
                         <InfoBox
                                 mainText="+ 5.23%" 
                                 subText="Percentage Change" 
                                 color="#FFF"
-                                fontSize={22}
+                                fontSize={2.5}
                                 spacing={8}
                         />
                         <InfoBox 
                                 mainText="10k+" 
                                 subText="Total Earnings" 
                                 color="#4FB81D"
-                                fontSize={32}
+                                fontSize={3.5}
                         />
                     </View>
                 </View>
@@ -94,10 +94,10 @@ const TripsScreen = () => {
                             startTrip();
                         }
                     }}>
-                        <View style={{backgroundColor: switchTheme.backgroundColor, height: 200, width: 200,
-                            borderRadius: 100, justifyContent: 'center'}}>
+                        <View style={{backgroundColor: switchTheme.backgroundColor, height: hp('25%'), 
+                            width: hp('25%'), borderRadius: 200, justifyContent: 'center'}}>
                             <AntDesign style={styles.switchIcon} 
-                                name="poweroff" size={100} 
+                                name="poweroff" size={hp('15%')} 
                                 color={switchTheme.color} 
                             />
                         </View>
@@ -112,7 +112,7 @@ const TripsScreen = () => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15,
+        padding: wp('4%'),
         flex: 1,
         // borderWidth: 1,
         // borderColor: 'red'
@@ -120,41 +120,41 @@ const styles = StyleSheet.create({
     tripStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 55
+        marginTop: hp('4.5%')
     },
     profilePhoto: {
-        height: 110,
-        width: 110,
+        height: wp('27%'),
+        width: wp('27%'),
         borderRadius: 70,
         borderColor: 'red',
         borderWidth: 1
     },
     greetingText: {
-        fontSize: 17,
+        fontSize: hp('2.2%'),
         color: '#828282'
     },
     tripStatusText: {
-        fontSize: 17,
+        fontSize: hp('2.2%'),
         fontWeight: 'bold',
         color: '#828282'
     },
     tripOverview: {
-        marginTop: 55
+        marginTop: hp('6%')
     },
     innerTripOverview: {
         flexDirection: 'row',
         flex: 1,
     },
     switchContainer: {
-        marginTop: 80,
+        marginTop: hp('8%'),
         alignItems: 'center'
     },
     switchIcon: {
         alignSelf: 'center', 
     },
     switchText: {
-        fontSize: 28,
-        marginTop: 15,
+        fontSize: hp('3.5%'),
+        marginTop: hp('2%'),
         fontWeight: 'bold'
     }
 });

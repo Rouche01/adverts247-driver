@@ -8,6 +8,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import PickerModal from '../components/PickerModal';
 import CustomInput from '../components/CustomInput';
 import SetFormState from '../components/SetFormState';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const AddAccountScreen = () => {
@@ -139,7 +140,7 @@ const AddAccountScreen = () => {
                     title="CONFIRM ACCOUNT"
                     containerStyle={{ marginTop: 20 }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                    titleStyle={{ fontSize: 17 }}
+                    titleStyle={{ fontSize: hp('2%') }}
                     loading={loading}
                     disabled={buttonDisable}
                     disabledStyle={{ backgroundColor: "#979797" }}
@@ -160,7 +161,7 @@ const AddAccountScreen = () => {
                     title="ADD ACCOUNT"
                     containerStyle={{ marginTop: 50 }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                    titleStyle={{ fontSize: 17 }}
+                    titleStyle={{ fontSize: hp('2%') }}
                     disabled={buttonDisable}
                     disabledStyle={{ backgroundColor: "#979797" }}
                     disabledTitleStyle={{ color: '#fff' }}

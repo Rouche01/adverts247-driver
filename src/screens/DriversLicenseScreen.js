@@ -7,6 +7,7 @@ import useCloudinary from '../hooks/useCloudinary';
 import useDisableButton from '../hooks/useDisableButton';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as UserContext } from '../context/UserInfoContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const DriversLicenseScreen = ({ navigation }) => {
 
@@ -49,8 +50,9 @@ const DriversLicenseScreen = ({ navigation }) => {
                 disabled={buttonDisable}
                 title='UPLOAD LICENSE'
                 containerStyle={{ flex: 1, width: '100%' }}
-                buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20  }}
-                titleStyle={{ fontSize: 17 }}
+                buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, 
+                marginHorizontal: wp('3.4%')  }}
+                titleStyle={{ fontSize: hp('2%') }}
             />
         </View>
     );

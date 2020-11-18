@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import CustomInput from './CustomInput';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 
@@ -36,7 +37,7 @@ const SetFormState = ({ bankName, accountNumber, accountName, btnTitle, loading,
                 title={btnTitle}
                 containerStyle={{ marginTop: 50 }}
                 buttonStyle={{ padding: 15, backgroundColor: '#FF3B30', borderRadius: 8 }}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
                 loading={loading}
                 onPress={onBtnClick}
             />

@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const SignupScreen = () => {
@@ -207,7 +208,7 @@ const SignupScreen = () => {
                 title="CONTINUE"
                 containerStyle={{ marginTop: 30, marginHorizontal: 10, marginBottom: 60 }}
                 buttonStyle={{ backgroundColor: 'rgb(33,36,39)', padding: 15}}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
                 onPress={() => onSignup()}
                 loading={state.loading}
             />
@@ -227,14 +228,14 @@ SignupScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        padding: wp('2%'),
         flex: 1
     },
     titleStyle: {
-        fontSize: 32,
-        marginLeft: 10,
+        fontSize: hp('3.8%'),
+        marginLeft: wp('2%'),
         marginBottom: 20,
-        marginTop: 15
+        marginTop: hp('3%')
     },
     legalStyle: {
         fontSize: 14,

@@ -7,6 +7,7 @@ import useCloudinary from '../hooks/useCloudinary';
 import useDisableButton from '../hooks/useDisableButton';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as UserContext } from '../context/UserInfoContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const InsuranceCertScreen = ({ navigation }) => {
 
@@ -50,7 +51,7 @@ const InsuranceCertScreen = ({ navigation }) => {
                 title='UPLOAD CERTIFICATE'
                 containerStyle={{ flex: 1, width: '100%' }}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8, marginHorizontal: 20  }}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
             />
         </View>
     );

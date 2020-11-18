@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageBackground, StyleSheet, View, Image, Text } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Button } from 'react-native-elements';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const AuthPromptScreen = ({ navigation }) => {
@@ -62,20 +63,20 @@ const styles = StyleSheet.create({
     logoStyle: {
         marginLeft: 30,
         position: 'absolute',
-        top: 100
+        top: hp('8.5%')
     },  
     backgroundStyle: {
         flex: 1,
     },
     callToActionWrapper: {
-        height: '32%',
+        height: hp('32%'),
         width: '100%',
         backgroundColor: 'rgb(33,36,39)',
         padding: 30
     },
     welcomeText: {
         color: 'white',
-        fontSize: 35,
+        fontSize: hp('4.5%'),
         fontWeight: 'normal'
     },
     buttonContainer: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     },
     buttonTitle: {
         color: 'black', 
-        fontSize: 18 
+        fontSize: hp('2.2%')
     }
 });
 

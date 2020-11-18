@@ -8,6 +8,7 @@ import { Context as PaymentContext } from '../context/PaymentContext';
 import { Context as UserContext } from '../context/UserInfoContext';
 import InfoBox from '../components/InfoBox';
 import { withNavigation } from 'react-navigation';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const EarningsScreen = ({ navigation }) => {
@@ -77,46 +78,44 @@ const EarningsScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.earningOverview}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 28, marginBottom: 15, fontWeight: 'bold' }}>Earnings Overview</Text>
-                        <Feather name="more-horizontal" size={30} color="black" />
+                        <Text style={{ fontSize: hp('3.2%'), marginBottom: 15, fontWeight: 'bold' }}>Earnings Overview</Text>
                     </View>
                     <View style={styles.innerEarningOverview}>
                         <InfoBox 
                                 mainText="2,000" 
                                 subText="Today's Earnings" 
                                 color="#4FB81D"
-                                fontSize={28}
+                                fontSize={3.5}
                             /> 
                         <InfoBox
                                 mainText="25,000" 
                                 subText="Avg Weekly Earnings" 
                                 color="#4FB81D"
-                                fontSize={24}
-                                spacing={4}
+                                fontSize={2.8}
                         />
                         <InfoBox 
                                 mainText="200k+" 
                                 subText="Total Earnings" 
                                 color="#4FB81D"
-                                fontSize={28}
+                                fontSize={3.5}
                         />
                     </View>
                 </View>
                 <View style={styles.payout}>
                     <View style={styles.accountRow}>
-                        <Text style={{ color: '#fff', fontSize: 17 }}>Available Payout</Text>
+                        <Text style={{ color: '#fff', fontSize: hp('2.1%') }}>Available Payout</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('AddAccount')}>
-                            <Text style={{ color: '#444', fontSize: 12, backgroundColor: '#ddd', paddingHorizontal: 17, paddingVertical: 2, borderRadius: 10 }}>ADD ACCOUNT</Text>
+                            <Text style={{ color: '#444', fontSize: hp('1.4%'), backgroundColor: '#ddd', paddingHorizontal: hp('2%'), paddingVertical: 2, borderRadius: 10 }}>ADD ACCOUNT</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={{ color: '#FF3B30', marginTop: 10, fontSize: 32, fontWeight: 'bold' }}>N24,567.00</Text> 
+                    <Text style={{ color: '#FF3B30', marginTop: hp('2.5%'), fontSize: hp('3.6%'), fontWeight: 'bold' }}>N24,567.00</Text> 
                 </View>
             </View>
             <Button 
                 title='WITHDRAW'
                 containerStyle={{ flex: 1, width: '100%'}}
                 buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
                 onPress={() => withdrawPayout()}
                 loading={loadingState}
             />
@@ -132,32 +131,32 @@ EarningsScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15,
+        padding: wp('4%'),
         flex: 1
     }, 
     earningStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 55
+        marginTop: hp('4.5%')
     },
     profilePhoto: {
-        height: 110,
-        width: 110,
+        height: wp('27%'),
+        width: wp('27%'),
         borderRadius: 70,
         borderColor: 'red',
         borderWidth: 1
     },
     greetingText: {
-        fontSize: 17,
+        fontSize: hp('2.2%'),
         color: '#828282'
     },
     earningStatusText: {
-        fontSize: 17,
+        fontSize: hp('2.2%'),
         fontWeight: 'bold',
         color: '#828282'
     },
     earningOverview: {
-        marginTop: 60
+        marginTop: hp('6%')
     },
     innerEarningOverview: {
         flexDirection: 'row',
@@ -165,10 +164,10 @@ const styles = StyleSheet.create({
     },
     payout: {
         backgroundColor: 'black',
-        marginTop: 150,
+        marginTop: hp('19%'),
         borderRadius: 8,
-        paddingHorizontal: 25,
-        paddingVertical: 25
+        paddingHorizontal: wp('6%'),
+        paddingVertical: hp('2.4%')
     },
     accountRow: {
         flexDirection: 'row',

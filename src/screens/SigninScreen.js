@@ -4,6 +4,7 @@ import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
 import useNavigateAfterLogin from '../hooks/useNavigateAfterLogin';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const SigninScreen = () => {
@@ -78,7 +79,7 @@ const SigninScreen = () => {
                 title="SIGN IN"
                 containerStyle={{ marginTop: 70, marginHorizontal: 10 }}
                 buttonStyle={{ backgroundColor: 'rgb(33,36,39)', padding: 15}}
-                titleStyle={{ fontSize: 17 }}
+                titleStyle={{ fontSize: hp('2%') }}
                 loading={loading}
             />
         </View>
@@ -98,13 +99,13 @@ SigninScreen.navigationOptions = {
 
 const styles = StyleSheet.create({
     titleStyle: {
-        fontSize: 32,
-        marginLeft: 10,
+        fontSize: hp('3.8%'),
+        marginLeft: wp('2%'),
         marginBottom: 20,
-        marginTop: 15
+        marginTop: hp('3%')
     },
     container: {
-        padding: 10,
+        padding: wp('2%'),
         flex: 1
     },
     errorText: {

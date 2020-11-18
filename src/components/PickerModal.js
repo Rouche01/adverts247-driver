@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Modal, Text, TouchableOpacity, FlatList, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
 import { MaterialIcons } from '@expo/vector-icons';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         width: '100%',
-        height: 400,
+        height: hp('40%'),
         backgroundColor: 'white'
     },
     header: {

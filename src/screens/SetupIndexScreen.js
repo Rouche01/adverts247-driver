@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { SafeAreaView, ScrollView } from 'react-navigation';
 import NavTabs from '../components/NavTabs';
 import { Context as AuthContext } from '../context/AuthContext';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const SetupIndexScreen = ({ navigation }) => {
@@ -46,7 +47,7 @@ const SetupIndexScreen = ({ navigation }) => {
                 <View style={styles.customHeader}>
                     <Image 
                         source={require('../assets/logo.png')}
-                        style={{ height: 35, width: 150 }}
+                        style={{ width: wp('40%') }}
                         resizeMode='contain'
                     />
                     <Button 
@@ -92,9 +93,9 @@ const SetupIndexScreen = ({ navigation }) => {
                         disabledStyle={{ backgroundColor: "#979797" }}
                         disabledTitleStyle={{ color: '#fff', opacity: 0.8 }}
                         title="CONTINUE"
-                        containerStyle={{ marginTop: 45, marginHorizontal: 15 }}
+                        containerStyle={{ marginTop: hp('5%'), marginHorizontal: 15 }}
                         buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
-                        titleStyle={{ fontSize: 17 }}
+                        titleStyle={{ fontSize: hp('2%') }}
                     />
                 </View>
             </ScrollView>
@@ -105,16 +106,16 @@ const SetupIndexScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     body: {
-        marginTop: 20
+        marginTop: hp('3%')
     },  
     mainText: {
-        fontSize: 28,
+        fontSize: hp('3.5%'),
         fontWeight: "bold",
-        marginLeft: 15
+        marginLeft: wp('5%')
     },
     subtitleText: {
-        fontSize: 17,
-        marginHorizontal: 15,
+        fontSize: hp('2%'),
+        marginHorizontal: wp('5%'),
         marginTop: 10,
         marginBottom: 20
     },

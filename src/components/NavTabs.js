@@ -3,6 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
 const NavTabs = ({ subText, mainText, routeName, navigation, complete }) => {
@@ -14,8 +15,8 @@ const NavTabs = ({ subText, mainText, routeName, navigation, complete }) => {
                     <Text style={styles.subText}>{ complete ? `Completed` : subText }</Text>
                     <Text style={styles.tabsTitle}>{mainText}</Text>
                 </View>
-                { !complete ? <AntDesign name="right" size={20} color="black" /> :
-                    <MaterialIcons name="check-circle" size={24} color="green" />
+                { !complete ? <AntDesign name="right" size={hp('2%')} color="black" /> :
+                    <MaterialIcons name="check-circle" size={hp('2.5%')} color="green" />
                 }
             </View>
         </TouchableOpacity>
@@ -25,13 +26,13 @@ const NavTabs = ({ subText, mainText, routeName, navigation, complete }) => {
 
 const styles = StyleSheet.create({
     tabsTitle: {
-        fontSize: 25
+        fontSize: hp('3%')
     },
     navTabs: {
         marginHorizontal: 15,
-        height: 100,
+        height: hp('12%'),
         backgroundColor: '#E3E3E3',
-        marginTop: 15,
+        marginTop: hp('1.8%'),
         borderRadius: 8,
         flexDirection: 'row',
         paddingHorizontal: 20,

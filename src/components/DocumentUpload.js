@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const DocumentUpload = ({ title, subtitle, placeholder, buttonPress, documentImage, dbImage }) => {
 
@@ -39,20 +40,20 @@ const DocumentUpload = ({ title, subtitle, placeholder, buttonPress, documentIma
 
 const styles = StyleSheet.create({
     container: {
-        paddingHorizontal: 20,
-        paddingVertical: 30,
+        paddingHorizontal: wp('3.4%'),
+        paddingTop: 30,
         flex: 4
     },
     mainText: {
-        fontSize: 28,
+        fontSize: hp('3.4%'),
         fontWeight: 'bold',
     },
     subText: {
-        fontSize: 16,
+        fontSize: hp('1.9%'),
         marginTop: 8
     },
     placeholderStyle: {
-        marginTop: 50,
+        marginTop: hp('6%'),
         width: 290,
         height: 171,
         justifyContent: 'center',
