@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
 import { ScrollView } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as TripContext } from '../context/TripContext';
@@ -49,6 +49,7 @@ const TripsScreen = () => {
 
     return (
         <SafeAreaView style={styles.container} forceInset={{ top: 'always' }}>
+            <StatusBar translucent={true} backgroundColor="#fff" barStyle="dark-content"/>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.tripStatus}>
                     <Image 
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
     tripStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: hp('4.5%')
+        marginTop: hp('6.4%')
     },
     profilePhoto: {
         height: wp('27%'),

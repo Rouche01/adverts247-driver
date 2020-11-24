@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, 
+        View, Text, 
+        TouchableOpacity, 
+        Image, ScrollView, 
+        ActivityIndicator, 
+        StatusBar } 
+from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import CustomInput from '../components/CustomInput';
@@ -101,6 +107,7 @@ const InformationScreen = ({ navigation }) => {
 
     return(
         <SafeAreaView forceInset={{ top: 'always' }} style={styles.container}>
+            <StatusBar translucent={true} backgroundColor="#fff" barStyle="dark-content"/>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Your Profile</Text>
                 <View style={styles.headerButton}>

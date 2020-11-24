@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
@@ -65,6 +65,7 @@ const EarningsScreen = ({ navigation }) => {
 
     return(
         <SafeAreaView forceInset={{ top: 'always' }} style={styles.container} >
+            <StatusBar translucent={true} backgroundColor="#fff" barStyle="dark-content"/>
             <View style={{ flex: 6 }}>
                 <View style={styles.earningStatus}>
                     <Image 
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     earningStatus: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: hp('4.5%')
+        marginTop: hp('6.4%')
     },
     profilePhoto: {
         height: wp('27%'),

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Alert, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -30,6 +30,7 @@ const SupportScreen = () => {
 
     return(
         <SafeAreaView forceInset={{ top: 'always' }} style={styles.container}>
+            <StatusBar translucent={true} backgroundColor="#fff" barStyle="dark-content"/>
             <Text style={styles.titleText}>Contact Us</Text>
             <View style={styles.contactForm}>
                 <Text style={styles.label}>Your Message</Text>

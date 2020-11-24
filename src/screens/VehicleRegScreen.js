@@ -7,6 +7,7 @@ import useCloudinary from '../hooks/useCloudinary';
 import useDisableButton from '../hooks/useDisableButton';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as UserContext } from '../context/UserInfoContext';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const VehicleRegScreen = ({ navigation }) => {
 

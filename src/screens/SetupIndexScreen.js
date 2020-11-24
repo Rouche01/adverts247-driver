@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Image, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Text, Image, ActivityIndicator, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView, ScrollView } from 'react-navigation';
 import NavTabs from '../components/NavTabs';
@@ -43,6 +43,7 @@ const SetupIndexScreen = ({ navigation }) => {
     return (
 
         <SafeAreaView forceInset={{ top: 'always' }}>
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0.9)" translucent={true} animated={true} />
             <ScrollView>
                 <View style={styles.customHeader}>
                     <Image 
@@ -134,7 +135,11 @@ const styles = StyleSheet.create({
 
 
 SetupIndexScreen.navigationOptions = {
-    headerShown: false
+    headerShown: false,
+    headerStyle: {
+        backgroundColor: 'rgb(33,36,39)',
+    },
+    headerTintColor: '#fff'
 }
 
 

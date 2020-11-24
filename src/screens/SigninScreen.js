@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, Alert } from 'react-native';
+import { View, StyleSheet, Text, Alert, StatusBar } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -46,6 +46,7 @@ const SigninScreen = () => {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" translucent={true} animated={true} />
             <Text style={styles.titleStyle}>Sign In</Text>
             <CustomInput 
                 label="Email"

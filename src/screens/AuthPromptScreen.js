@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Image, Text } from 'react-native';
+import { ImageBackground, StyleSheet, View, Image, Text, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -9,6 +9,7 @@ const AuthPromptScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* <Text h1>Hello</Text> */}
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0)" animated={true} translucent={true} />
             <View style={styles.backgroundStyle}>
                <ImageBackground 
                     source={require('../assets/driver-landing.jpg')}

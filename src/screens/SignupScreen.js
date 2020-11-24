@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, StatusBar } from 'react-native';
 import CustomInput from '../components/CustomInput';
 import { Button } from 'react-native-elements';
 import { Context as AuthContext } from '../context/AuthContext';
@@ -103,6 +103,7 @@ const SignupScreen = () => {
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.titleStyle}>Create Account</Text>
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" translucent={true} animated={true} />
             { state.errorMessage ? <Text style={styles.errorStyle}>{state.errorMessage}</Text> : null }
             <View style={{ flexDirection: 'row' }}>
                 <CustomInput 

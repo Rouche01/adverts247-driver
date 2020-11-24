@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
@@ -33,6 +33,11 @@ const TransactionsScreen = () => {
 
     return (
         <View style={styles.container}>
+            <StatusBar translucent={true} 
+                animated={true} 
+                backgroundColor="rgba(0, 0, 0, 0.2)" 
+                barStyle="light-content"
+            />
             <FlatList 
                 data={dummyTransactions}
                 keyExtractor={(item) => item.time}

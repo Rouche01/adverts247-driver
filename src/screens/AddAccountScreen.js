@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import {Context as UserContext } from '../context/UserInfoContext';
 import { Context as PaymentContext } from '../context/PaymentContext';
@@ -118,6 +118,11 @@ const AddAccountScreen = () => {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" 
+                translucent={true} 
+                barStyle="light-content"
+                animated={true}
+            />
             { !hasBankInfo ? <View>
                 <TouchableOpacity onPress={() => setToggleModal(!toggleModal)}>
                     <View style={styles.selectInput}>
