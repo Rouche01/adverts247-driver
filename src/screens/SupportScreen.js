@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         paddingHorizontal: 20,
         paddingVertical: 20,
-        fontSize: 16
+        fontSize: hp('2.2%')
     }
 });
 

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
+import { StyleSheet, 
+    View, Text, Image, TouchableOpacity, ActivityIndicator, Alert, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-navigation';
@@ -18,6 +19,7 @@ const EarningsScreen = ({ navigation }) => {
 
     const [ firstName, setFirstName ] = useState('');
     const [ loadingState, setLoadingState ] = useState(false);
+    const [ displayText, setDisplayText ] = useState(true);
 
     useEffect(() => {
         if(user) {
@@ -37,6 +39,28 @@ const EarningsScreen = ({ navigation }) => {
 
 
     // console.log(user);
+
+    useEffect(() => {
+
+        let blinkCounter = setInterval(() => {
+            setDisplayText((displayText) => !displayText);
+        }, 700);
+
+        navigation.addListener('willFocus', () => {
+                blinkCounter = setInterval(() => {
+                setDisplayText((displayText) => !displayText);
+            }, 700);
+        });
+
+        navigation.addListener('willBlur', () => {
+            clearInterval(blinkCounter);
+        });
+
+        return () => {
+            clearInterval(blinkCounter);
+        }
+
+    }, []);
 
 
     const withdrawPayout = async() => {
@@ -109,7 +133,9 @@ const EarningsScreen = ({ navigation }) => {
                             <Text style={{ color: '#444', fontSize: hp('1.4%'), backgroundColor: '#ddd', paddingHorizontal: hp('2%'), paddingVertical: 2, borderRadius: 10 }}>ADD ACCOUNT</Text>
                         </TouchableOpacity>
                     </View>
-                    <Text style={{ color: '#FF3B30', marginTop: hp('2.5%'), fontSize: hp('3.6%'), fontWeight: 'bold' }}>N24,567.00</Text> 
+                    <Text style={{ color: '#FF3B30', marginTop: hp('2.5%'), fontSize: hp('3.6%'), fontWeight: 'bold' }}>
+                        { displayText ? `N24,567.00` : '' }
+                    </Text> 
                 </View>
             </View>
             <Button 

@@ -10,6 +10,7 @@ import { Provider as UserProvider } from './src/context/UserInfoContext';
 import { Provider as TripProvider } from './src/context/TripContext';
 import { Provider as PaymentProvider } from './src/context/PaymentContext';
 import { Provider as MessageProvider } from './src/context/MessageContext';
+import { Provider as StreamingProvider } from './src/context/StreamingContext';
 import SetupIndexScreen from './src/screens/SetupIndexScreen';
 import { setNavigator } from './src/navigationRef';
 import ProfilePhotoScreen from './src/screens/ProfilePhotoScreen';
@@ -24,6 +25,8 @@ import SupportScreen from './src/screens/SupportScreen';
 import { MaterialIcons, AntDesign, FontAwesome, Feather } from '@expo/vector-icons';
 import AddAccountScreen from './src/screens/AddAccountScreen';
 import TransactionsScreen from './src/screens/TransactionsScreen';
+import GatewayScreen from './src/screens/GatewayScreen';
+import ExtraInfoScreen from './src/screens/ExtraInfoScreen';
 
 
 
@@ -32,8 +35,10 @@ const navigator = createSwitchNavigator({
     PreAuth: PreAuthScreen,
     AuthPrompt: AuthPromptScreen,
     Signup: SignupScreen,
+    ExtraInfo: ExtraInfoScreen,
     Signin: SigninScreen
   }),
+  Gateway: GatewayScreen,
   accountSetupFlow: createStackNavigator({
     SetupIndex: SetupIndexScreen,
     ProfilePhoto: ProfilePhotoScreen,
@@ -119,7 +124,9 @@ export default () => {
         <PaymentProvider>
           <TripProvider>
             <MessageProvider>
-              <App ref={(navigator) => setNavigator(navigator)} />
+              <StreamingProvider>
+                <App ref={(navigator) => setNavigator(navigator)} />
+              </StreamingProvider>
             </MessageProvider>
           </TripProvider>
         </PaymentProvider>

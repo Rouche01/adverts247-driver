@@ -13,9 +13,13 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 const AddAccountScreen = () => {
 
-    const { state: { bankList, userAccountDetails, loading, recipientCode }, 
-        getBankList, confirmUserAccount,
-        clearAccountDetails, createRecipient } = useContext(PaymentContext);
+    const { 
+        state: { bankList, userAccountDetails, loading, recipientCode }, 
+        getBankList, 
+        confirmUserAccount,
+        clearAccountDetails, 
+        createRecipient 
+    } = useContext(PaymentContext);
     
     const { updateUser } = useContext(UserContext);
     const { state: { user }, getUser } = useContext(AuthContext);
@@ -211,22 +215,23 @@ const styles = StyleSheet.create({
         padding: 15
     },
     selectInput: {
-        height: 55,
+        height: hp('7.2%'),
         width: '100%',
         backgroundColor: '#E3E3E3',
         borderRadius: 5,
         paddingHorizontal: 20,
+        paddingVertical: hp('0.5%'),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 20,
     },
     placeholder: {
-        fontSize: 16,
+        fontSize: hp('2.2%'),
         color: 'gray'
     },
     selectedValue: {
-        fontSize: 16,
+        fontSize: hp('2.2%'),
         color: 'black'
     }
 });

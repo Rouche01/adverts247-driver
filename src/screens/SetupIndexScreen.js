@@ -5,6 +5,7 @@ import { SafeAreaView, ScrollView } from 'react-navigation';
 import NavTabs from '../components/NavTabs';
 import { Context as AuthContext } from '../context/AuthContext';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { checkCameraPermission, checkLocationPermission } from '../utilities/UserPermissions';
 
 
 const SetupIndexScreen = ({ navigation }) => {
@@ -15,6 +16,23 @@ const SetupIndexScreen = ({ navigation }) => {
     const { state, signout } = useContext(AuthContext);
 
     // console.log(state);
+
+    useEffect(() => {
+
+        (async() => {
+
+            const cameraPermission = await checkCameraPermission();
+            const locationPermission = await checkLocationPermission();
+
+            console.log(cameraPermission, locationPermission);
+
+            if(!cameraPermission || !locationPermission) {
+                console.log(cameraPermission, locationPermission);
+                navigation.navigate('Gateway');
+            }
+        })();
+
+    }, [])
 
     useEffect(() => {
         if(state.user) {

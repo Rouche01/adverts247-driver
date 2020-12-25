@@ -3,21 +3,54 @@ import { StyleSheet, View, Image, Text, TouchableOpacity, ActivityIndicator, Sta
 import { ScrollView } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as TripContext } from '../context/TripContext';
+import { Context as StreamingContext } from '../context/StreamingContext';
 import { SafeAreaView } from 'react-navigation';
 import InfoBox from '../components/InfoBox';
 import { AntDesign, Feather } from '@expo/vector-icons';
+import { checkCameraPermission, checkLocationPermission } from '../utilities/UserPermissions';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 
-const TripsScreen = () => {
+const TripsScreen = ({ navigation }) => {
 
     const { state: { user } } = useContext(AuthContext);
     const { state: { tripState }, startTrip, endTrip } = useContext(TripContext);
+    const { 
+        state: { streamingStatus }, 
+        switchStreamingStatus, 
+        getStreamingStatus 
+    } = useContext(StreamingContext);
+
     const [ firstName, setFirstName ] = useState('');
     const [ switchTheme, setSwitchTheme ] = useState({
         backgroundColor: 'black',
         color: '#fff'
     });
+
+    useEffect(() => {
+
+        (async() => {
+
+            const cameraPermission = await checkCameraPermission();
+            const locationPermission = await checkLocationPermission();
+
+            console.log(cameraPermission, locationPermission);
+
+            if(!cameraPermission || !locationPermission) {
+                console.log(cameraPermission, locationPermission);
+                navigation.navigate('Gateway');
+            }
+        })();
+
+    }, [])
+
+    useEffect(() => {
+        getStreamingStatus(user._id);
+    }, []);
+
+    useEffect(() => {
+        console.log(streamingStatus);
+    }, [streamingStatus]);
 
     useEffect(() => {
         if(user) {
@@ -26,20 +59,25 @@ const TripsScreen = () => {
     }, [user])
 
     useEffect(() => {
-        if(tripState) {
+        if(streamingStatus === "on") {
             setSwitchTheme({
                 backgroundColor: '#FF3B30',
                 color: 'black'
             })
-        } else {
+        } else if (streamingStatus === "off") {
             setSwitchTheme({
                 backgroundColor: 'black',
                 color: '#fff'
             })
         }
-    }, [tripState])
+    }, [streamingStatus])
 
-    // console.log(tripState);
+
+    const tripSwitch = async() => {
+        
+        await switchStreamingStatus(user._id);
+        await getStreamingStatus(user._id);
+    }
 
     if(!user) {
         return <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -88,13 +126,7 @@ const TripsScreen = () => {
                     </View>
                 </View>
                 <View style={styles.switchContainer}>
-                    <TouchableOpacity onPress={() => {
-                        if(tripState) {
-                            endTrip();
-                        } else {
-                            startTrip();
-                        }
-                    }}>
+                    <TouchableOpacity onPress={tripSwitch}>
                         <View style={{backgroundColor: switchTheme.backgroundColor, height: hp('25%'), 
                             width: hp('25%'), borderRadius: 200, justifyContent: 'center'}}>
                             <AntDesign style={styles.switchIcon} 
@@ -103,7 +135,9 @@ const TripsScreen = () => {
                             />
                         </View>
                     </TouchableOpacity>
-                    <Text style={styles.switchText}>{ !tripState ? `Start Trip` : `End Trip` }</Text>
+                    <Text style={styles.switchText}>
+                        { streamingStatus === "off" ? `Start Trip` : `End Trip` }
+                    </Text>
                 </View>
             </ScrollView>
         </SafeAreaView>

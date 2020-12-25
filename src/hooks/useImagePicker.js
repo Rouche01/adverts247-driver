@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { getCameraPermission } from '../utilities/UserPermissions';
 import * as ImagePicker from 'expo-image-picker';
 
 
@@ -7,7 +6,6 @@ export default (imageAspect) => {
     const [ image, setImage ] = useState(null);
 
     const handleImagePick = async() => {
-        getCameraPermission();
 
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
