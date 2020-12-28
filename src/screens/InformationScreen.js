@@ -46,7 +46,7 @@ const InformationScreen = ({ navigation }) => {
 
 
     const onChangeTextInput = (fieldObject) => {
-        console.log(Object.keys(fieldObject)[0]);
+        // console.log(Object.keys(fieldObject)[0]);
 
         const userValue = Object.keys(fieldObject)[0];
 
@@ -77,7 +77,7 @@ const InformationScreen = ({ navigation }) => {
 
         if(image) {
             const cloudinaryRef = await handleUpload(image);
-            console.log(cloudinaryRef);
+            // console.log(cloudinaryRef);
             data.profilePhoto = cloudinaryRef.url
         }
 
@@ -90,7 +90,7 @@ const InformationScreen = ({ navigation }) => {
             data.phoneNumber = userInfo.phoneNumber
         }
 
-        console.log(data);
+        // console.log(data);
 
         if(Object.keys(data).length > 0) {
             // console.log(data);

@@ -24,7 +24,7 @@ const updateUser = (dispatch) => async(userId, data, callback, routeName) => {
             customNavigate(routeName);
         }
     } catch(err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: 'add_error',
             payload: err

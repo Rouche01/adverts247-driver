@@ -36,7 +36,7 @@ const ExtraInfoScreen = ({ navigation }) => {
 
     useEffect(() => {
         if(errorMessage) {
-            console.log(errorMessage);
+            // console.log(errorMessage);
             Alert.alert(
                 'Signup Error',
                 'An error occured while trying to sign up, make sure you are filling in accurate details and try again',

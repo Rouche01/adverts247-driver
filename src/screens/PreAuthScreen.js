@@ -7,7 +7,7 @@ import useNavigateWithLocalSignin from '../hooks/useNavigateWithLocalSignin';
 
 const PreAuthScreen = () => {
     
-    const { state: { user }, tryLocalSignin, getUser } = useContext(AuthContext);
+    const { state: { user }, tryLocalSignin } = useContext(AuthContext);
     const [ localSigninAndNavigate ] = useNavigateWithLocalSignin();
 
 
@@ -19,11 +19,11 @@ const PreAuthScreen = () => {
     }, [])
 
 
-    useEffect(() => {
-        if(user) {
-            console.log(user);
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if(user) {
+    //         console.log(user);
+    //     }
+    // }, [user])
 
 
     return (

@@ -16,7 +16,7 @@ const GatewayScreen = ({ navigation }) => {
 
     useEffect(() => {
         if(locationPermission === 'granted' && cameraPermission === 'granted') {
-            console.log('move to the next');
+            // console.log('move to the next');
 
             const { profilePhoto, insuranceCert, driversLicense, vehicleReg} = user;
             if(profilePhoto && insuranceCert && driversLicense && vehicleReg) {

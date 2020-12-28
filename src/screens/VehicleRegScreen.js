@@ -24,7 +24,7 @@ const VehicleRegScreen = ({ navigation }) => {
         if(image) {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
-            console.log(cloudinaryRef);
+            // console.log(cloudinaryRef);
             await updateUser(state.user._id, { vehicleReg: cloudinaryRef.url }, getUser, 'SetupIndex');
             setLoadingState(false);
         } else {
@@ -32,7 +32,7 @@ const VehicleRegScreen = ({ navigation }) => {
         }
     }
 
-    console.log(state);
+    // console.log(state);
 
     return (
         <View style={styles.container}>

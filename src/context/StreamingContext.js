@@ -25,7 +25,7 @@ const switchStreamingStatus = (dispatch) => async(driverId) => {
             }
         });
     } catch(err) {
-        console.log(err);
+        // console.log(err);
         dispatch({
             type: 'set_error',
             payload: err.message

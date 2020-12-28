@@ -24,7 +24,7 @@ const InsuranceCertScreen = ({ navigation }) => {
         if(image) {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
-            console.log(cloudinaryRef);
+            // console.log(cloudinaryRef);
             await updateUser(state.user._id, { insuranceCert: cloudinaryRef.url }, getUser, 'VehicleReg');
             setLoadingState(false)
         } else {
@@ -32,7 +32,7 @@ const InsuranceCertScreen = ({ navigation }) => {
         }
     }
 
-    console.log(state);
+    // console.log(state);
 
     return (
         <View style={styles.container}>

@@ -36,7 +36,7 @@ const ProfilePhotoScreen = ({ navigation }) => {
         if(image) {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
-            console.log(cloudinaryRef);
+            // console.log(cloudinaryRef);
             if(cloudinaryRef) {
                 await updateUser(
                     state.user._id, 

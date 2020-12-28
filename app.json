@@ -18,16 +18,25 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.adverts247.driverapp",
+      "buildNumber": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
+        "adaptiveIcon": {
+          "foregroundImage": "./assets/adaptive-icon.png",
+          "backgroundColor": "#FFFFFF"
+        },
+        "package": "com.adverts247.driverapp",
+        "versionCode": 1,
         "permissions": [
           "CAMERA",
           "CAMERA_ROLL",
-          "READ_EXTERNAL_STORAGE"
+          "READ_EXTERNAL_STORAGE",
+          "LOCATION"
         ]
     }
   }

@@ -132,7 +132,7 @@ const getUser = (dispatch) => async() => {
 
 
 const clearErrorMessage = (dispatch) => async() => {
-    console.log('Works');
+    // console.log('Works');
     dispatch({
         type: 'clear_error_message'
     })

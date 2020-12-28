@@ -34,10 +34,10 @@ const TripsScreen = ({ navigation }) => {
             const cameraPermission = await checkCameraPermission();
             const locationPermission = await checkLocationPermission();
 
-            console.log(cameraPermission, locationPermission);
+            // console.log(cameraPermission, locationPermission);
 
             if(!cameraPermission || !locationPermission) {
-                console.log(cameraPermission, locationPermission);
+                // console.log(cameraPermission, locationPermission);
                 navigation.navigate('Gateway');
             }
         })();
@@ -48,9 +48,9 @@ const TripsScreen = ({ navigation }) => {
         getStreamingStatus(user._id);
     }, []);
 
-    useEffect(() => {
-        console.log(streamingStatus);
-    }, [streamingStatus]);
+    // useEffect(() => {
+    //     console.log(streamingStatus);
+    // }, [streamingStatus]);
 
     useEffect(() => {
         if(user) {

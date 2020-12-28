@@ -24,7 +24,7 @@ const DriversLicenseScreen = ({ navigation }) => {
         if(image) {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
-            console.log(cloudinaryRef);
+            // console.log(cloudinaryRef);
             await updateUser(state.user._id, { driversLicense: cloudinaryRef.url }, getUser, 'InsuranceCert');
             setLoadingState(false);
         } else {
