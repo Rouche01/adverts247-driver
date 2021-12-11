@@ -1,47 +1,40 @@
-import React, { useContext, useEffect } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { Context as AuthContext } from '../context/AuthContext';
-import useNavigateWithLocalSignin from '../hooks/useNavigateWithLocalSignin';
-
-
+import React, { useContext, useEffect } from "react";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { Context as AuthContext } from "../context/AuthContext";
+import useNavigateWithLocalSignin from "../hooks/useNavigateWithLocalSignin";
+import { customNavigate } from "../navigationRef";
 
 const PreAuthScreen = () => {
-    
-    const { state: { user }, tryLocalSignin } = useContext(AuthContext);
-    const [ localSigninAndNavigate ] = useNavigateWithLocalSignin();
+  const {
+    state: { user },
+    tryLocalSignin,
+  } = useContext(AuthContext);
+  const [localSigninAndNavigate] = useNavigateWithLocalSignin();
 
+  useEffect(() => {
+    // console.log("Working");
+    // localSigninAndNavigate(tryLocalSignin);
+    // tryLocalSignin(getUser);
+    customNavigate("AuthPrompt");
+  }, []);
 
-    useEffect(() => {
+  // useEffect(() => {
+  //     if(user) {
+  //         console.log(user);
+  //     }
+  // }, [user])
 
-        localSigninAndNavigate(tryLocalSignin);
-        // tryLocalSignin(getUser);
-
-    }, [])
-
-
-    // useEffect(() => {
-    //     if(user) {
-    //         console.log(user);
-    //     }
-    // }, [user])
-
-
-    return (
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-            <ActivityIndicator size='large' color='black' />
-        </View>
-    );
-}
-
+  return (
+    <View style={{ flex: 1, justifyContent: "center" }}>
+      <ActivityIndicator size="large" color="black" />
+    </View>
+  );
+};
 
 PreAuthScreen.navigationOptions = {
-    headerShown: false
-}
+  headerShown: false,
+};
 
-
-const styles = StyleSheet.create({
-
-});
-
+const styles = StyleSheet.create({});
 
 export default PreAuthScreen;
