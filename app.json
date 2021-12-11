@@ -3,6 +3,7 @@
     "name": "Adverts247 Driver",
     "slug": "adverts247-driver",
     "version": "1.0.0",
+    "sdkVersion": "40.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "description": "This is the mobile app for drivers onboarded to Adverts247, the app is to track and measure trips and earnings",
@@ -14,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.adverts247.driverapp",
@@ -26,12 +25,12 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-        "adaptiveIcon": {
-          "foregroundImage": "./assets/adaptive-icon.png",
-          "backgroundColor": "#FFFFFF"
-        },
-        "package": "com.adverts247.driverapp",
-        "versionCode": 1
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.adverts247.driverapp",
+      "versionCode": 1
     }
   }
 }

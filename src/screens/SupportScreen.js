@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Alert, StatusBar } from 'react-native';
 import { Button } from 'react-native-elements';
-import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Context as AuthContext } from '../context/AuthContext';
 import { Context as MessageContext } from '../context/MessageContext';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
