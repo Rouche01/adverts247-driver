@@ -1,15 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default (dependency, userState, img) => {
+  const [buttonDisable, setButtonDisable] = useState(true);
 
-    const [ buttonDisable, setButtonDisable ] = useState(true);
+  useEffect(() => {
+    if (img || dependency) {
+      setButtonDisable(false);
+    }
+  }, [userState, img]);
 
-    useEffect(() => {
-        if(img || dependency) {
-            setButtonDisable(false);
-        }
+  return [buttonDisable];
+};
 
-    }, [userState, img]);
+export const useDisableSettings = (dependency) => {
+  const [buttonDisable, setButtonDisable] = useState(true);
 
-    return [ buttonDisable ];
-}
+  useEffect(() => {
+    if (dependency) {
+      setButtonDisable(false);
+    }
+  }, [dependency]);
+
+  return [buttonDisable];
+};

@@ -59,8 +59,10 @@ const TripsScreen = ({ navigation }) => {
     })();
   }, []);
 
+  console.log(streamingStatus);
+
   useEffect(() => {
-    getStreamingStatus(user._id);
+    getStreamingStatus(user.id);
   }, []);
 
   // useEffect(() => {
@@ -88,8 +90,8 @@ const TripsScreen = ({ navigation }) => {
   }, [streamingStatus]);
 
   const tripSwitch = async () => {
-    await switchStreamingStatus(user._id);
-    await getStreamingStatus(user._id);
+    await switchStreamingStatus(user.id);
+    await getStreamingStatus(user.id);
   };
 
   if (!user) {
