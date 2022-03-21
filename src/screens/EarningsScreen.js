@@ -119,7 +119,7 @@ const EarningsScreen = ({ navigation }) => {
           <View style={{ paddingLeft: 15, flex: 1 }}>
             <Text style={styles.greetingText}>Good morning {firstName},</Text>
             <Text style={styles.earningStatusText}>
-              You have earned 3,000 within 48 hours
+              You have drove a total of 300 hours
             </Text>
           </View>
         </View>

@@ -112,7 +112,7 @@ const TripsScreen = ({ navigation }) => {
           <View style={{ paddingLeft: 15, flex: 1 }}>
             <Text style={styles.greetingText}>Good morning {firstName},</Text>
             <Text style={styles.tripStatusText}>
-              You have completed 100 trips in 48 hours
+              You have been driving for 8 hours today.
             </Text>
           </View>
         </View>

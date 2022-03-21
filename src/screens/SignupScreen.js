@@ -102,12 +102,7 @@ const SignupScreen = ({ navigation }) => {
               }}
               flexStyle={1}
               margin={10}
-              validationError={
-                validationErrors.firstName &&
-                validationErrors.firstName.length > 0
-                  ? validationErrors.firstName
-                  : null
-              }
+              validationError={validationErrors?.firstName || null}
             />
             <CustomInput
               label="Last Name"
@@ -120,12 +115,7 @@ const SignupScreen = ({ navigation }) => {
               }}
               flexStyle={1}
               margin={10}
-              validationError={
-                validationErrors.lastName &&
-                validationErrors.lastName.length > 0
-                  ? validationErrors.lastName
-                  : null
-              }
+              validationError={validationErrors?.lastName || null}
             />
           </View>
           <CustomInput
@@ -138,11 +128,7 @@ const SignupScreen = ({ navigation }) => {
               setEmail(value);
             }}
             margin={10}
-            validationError={
-              validationErrors.email && validationErrors.email.length > 0
-                ? validationErrors.email
-                : null
-            }
+            validationError={validationErrors?.email || null}
           />
           <CustomInput
             label="Phone Number"
@@ -155,12 +141,7 @@ const SignupScreen = ({ navigation }) => {
             }}
             margin={10}
             keyboard="number-pad"
-            validationError={
-              validationErrors.phoneNumber &&
-              validationErrors.phoneNumber.length > 0
-                ? validationErrors.phoneNumber
-                : null
-            }
+            validationError={validationErrors?.phoneNumber || null}
           />
           <CustomInput
             label="Password"
@@ -173,11 +154,7 @@ const SignupScreen = ({ navigation }) => {
             }}
             secureTextEntry={true}
             margin={10}
-            validationError={
-              validationErrors.password && validationErrors.password.length > 0
-                ? validationErrors.password
-                : null
-            }
+            validationError={validationErrors?.password || null}
           />
           <CustomInput
             label="City"
@@ -189,11 +166,7 @@ const SignupScreen = ({ navigation }) => {
               setCity(value);
             }}
             margin={10}
-            validationError={
-              validationErrors.city && validationErrors.city.length > 0
-                ? validationErrors.city
-                : null
-            }
+            validationError={validationErrors?.city || null}
           />
           <CustomInput
             label="Invite Code"
