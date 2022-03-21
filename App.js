@@ -1,4 +1,5 @@
 import React from "react";
+import { Platform } from 'react-native'
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -11,6 +12,7 @@ import { Provider as TripProvider } from "./src/context/TripContext";
 import { Provider as PaymentProvider } from "./src/context/PaymentContext";
 import { Provider as MessageProvider } from "./src/context/MessageContext";
 import { Provider as StreamingProvider } from "./src/context/StreamingContext";
+import { MenuProvider } from "react-native-popup-menu";
 import SetupIndexScreen from "./src/screens/SetupIndexScreen";
 import { setNavigator } from "./src/navigationRef";
 import ProfilePhotoScreen from "./src/screens/ProfilePhotoScreen";
@@ -33,7 +35,11 @@ import TransactionsScreen from "./src/screens/TransactionsScreen";
 import GatewayScreen from "./src/screens/GatewayScreen";
 import ExtraInfoScreen from "./src/screens/ExtraInfoScreen";
 import UploadIdScreen from "./src/screens/UploadIdScreen";
-import NewProfilePhotoScreen from "./src/screens/NewProfilePhotoScreen";
+
+if(Platform.OS === 'android') { // only android needs polyfill
+  require('intl'); // import intl object
+  require('intl/locale-data/jsonp/en-NG'); // load the required locale details
+}
 
 const navigator = createSwitchNavigator({
   authFlow: createStackNavigator({
@@ -124,18 +130,20 @@ const App = createAppContainer(navigator);
 
 export default () => {
   return (
-    <UserProvider>
-      <AuthProvider>
-        <PaymentProvider>
-          <TripProvider>
-            <MessageProvider>
-              <StreamingProvider>
-                <App ref={(navigator) => setNavigator(navigator)} />
-              </StreamingProvider>
-            </MessageProvider>
-          </TripProvider>
-        </PaymentProvider>
-      </AuthProvider>
-    </UserProvider>
+    <MenuProvider>
+      <UserProvider>
+        <AuthProvider>
+          <PaymentProvider>
+            <TripProvider>
+              <MessageProvider>
+                <StreamingProvider>
+                  <App ref={(navigator) => setNavigator(navigator)} />
+                </StreamingProvider>
+              </MessageProvider>
+            </TripProvider>
+          </PaymentProvider>
+        </AuthProvider>
+      </UserProvider>
+    </MenuProvider>
   );
 };

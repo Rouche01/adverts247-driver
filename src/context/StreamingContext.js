@@ -14,7 +14,6 @@ const streamingReducer = (state, action) => {
 };
 
 const updateStreamingStatus = (dispatch) => async (driverId, cb) => {
-  console.log(driverId);
   try {
     const token = await AsyncStorage.getItem("token");
     await adverts247Api.post(
@@ -40,16 +39,12 @@ const updateStreamingStatus = (dispatch) => async (driverId, cb) => {
 
 const getStreamingStatus = (dispatch) => async (driverId) => {
   try {
-    const response = await adverts247Api.get(
-      `/stream/${driverId}`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    // console.log(response.data.driver);
+    const token = await AsyncStorage.getItem("token");
+    const response = await adverts247Api.get(`/stream/${driverId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     dispatch({
       type: "set_streaming_status",
       payload: response.data.data.streamStatus,

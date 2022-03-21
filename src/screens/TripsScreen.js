@@ -10,10 +10,8 @@ import {
 } from "react-native";
 import { ScrollView } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
-import { Context as TripContext } from "../context/TripContext";
 import { Context as StreamingContext } from "../context/StreamingContext";
 import { SafeAreaView } from "react-native-safe-area-context";
-import InfoBox from "../components/InfoBox";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import {
   checkCameraPermission,
@@ -23,22 +21,20 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import EarningBox from "../components/EarningBox";
 
 const TripsScreen = ({ navigation }) => {
   const {
     state: { user },
   } = useContext(AuthContext);
-  const {
-    state: { tripState },
-    startTrip,
-    endTrip,
-  } = useContext(TripContext);
+
   const {
     state: { streamingStatus },
-    switchStreamingStatus,
+    updateStreamingStatus,
     getStreamingStatus,
   } = useContext(StreamingContext);
 
+  const [earningFilter, setEarningFilter] = useState("day");
   const [firstName, setFirstName] = useState("");
   const [switchTheme, setSwitchTheme] = useState({
     backgroundColor: "black",
@@ -59,15 +55,13 @@ const TripsScreen = ({ navigation }) => {
     })();
   }, []);
 
-  console.log(streamingStatus);
-
   useEffect(() => {
-    getStreamingStatus(user.id);
-  }, []);
+    const getStreamData = async () => {
+      await getStreamingStatus(user.id);
+    };
 
-  // useEffect(() => {
-  //     console.log(streamingStatus);
-  // }, [streamingStatus]);
+    getStreamData().catch(console.error);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -90,7 +84,7 @@ const TripsScreen = ({ navigation }) => {
   }, [streamingStatus]);
 
   const tripSwitch = async () => {
-    await switchStreamingStatus(user.id);
+    await updateStreamingStatus(user.id);
     await getStreamingStatus(user.id);
   };
 
@@ -141,24 +135,14 @@ const TripsScreen = ({ navigation }) => {
             </Text>
           </View>
           <View style={styles.innerTripOverview}>
-            <InfoBox
-              mainText="50"
-              subText="Trips Completed"
-              color="#FF3B30"
-              fontSize={3.5}
-            />
-            <InfoBox
-              mainText="+ 5.23%"
-              subText="Percentage Change"
-              color="#FFF"
-              fontSize={2.5}
-              spacing={8}
-            />
-            <InfoBox
-              mainText="10k+"
-              subText="Total Earnings"
-              color="#4FB81D"
-              fontSize={3.5}
+            <EarningBox
+              selectedFilter={earningFilter}
+              filters={[
+                { label: "Today", value: "day" },
+                { label: "This week", value: "week" },
+                { label: "This month", value: "month" },
+              ]}
+              setFilter={setEarningFilter}
             />
           </View>
         </View>
@@ -182,7 +166,7 @@ const TripsScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
           <Text style={styles.switchText}>
-            {streamingStatus === "off" ? `Start Trip` : `End Trip`}
+            {streamingStatus === "off" ? `Start Day` : `End Day`}
           </Text>
         </View>
       </ScrollView>
