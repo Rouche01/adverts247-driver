@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from 'react-native'
+import { Platform } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
@@ -36,9 +36,10 @@ import GatewayScreen from "./src/screens/GatewayScreen";
 import ExtraInfoScreen from "./src/screens/ExtraInfoScreen";
 import UploadIdScreen from "./src/screens/UploadIdScreen";
 
-if(Platform.OS === 'android') { // only android needs polyfill
-  require('intl'); // import intl object
-  require('intl/locale-data/jsonp/en-NG'); // load the required locale details
+if (Platform.OS === "android") {
+  // only android needs polyfill
+  require("intl"); // import intl object
+  require("intl/locale-data/jsonp/en-NG"); // load the required locale details
 }
 
 const navigator = createSwitchNavigator({

@@ -132,7 +132,7 @@ const SigninScreen = ({ navigation }) => {
         secureTextEntry={true}
         margin={10}
       />
-      <Pressable>
+      <Pressable onPress={() => console.log("works")}>
         <Text style={styles.forgotPwdLink}>Forgot Password?</Text>
       </Pressable>
       <Button
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     fontSize: hp("2%"),
     marginRight: 8,
-    marginTop: 8
+    marginTop: 8,
   },
   registerBtnGroup: {
     marginTop: 16,
