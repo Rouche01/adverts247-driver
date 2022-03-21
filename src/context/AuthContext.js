@@ -2,7 +2,6 @@ import createDataContext from "./createDataContext";
 import { customNavigate } from "../navigationRef";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import adverts247Api from "../api/adverts247Api";
-import { NODE_ENV, LOCAL_BACKEND_URL } from "@env"
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -63,7 +62,6 @@ const signin =
   };
 
 const signup = (dispatch) => async (signupData, callback) => {
-  console.log(NODE_ENV, LOCAL_BACKEND_URL, 'check');
   dispatch({ type: "loading_state", payload: true });
   try {
     const response = await adverts247Api.post("/drivers/signup", signupData);
