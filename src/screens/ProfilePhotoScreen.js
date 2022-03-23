@@ -45,16 +45,10 @@ const ProfilePhotoScreen = ({ navigation }) => {
       const cloudinaryRef = await handleUpload(image);
       // console.log(cloudinaryRef);
       if (cloudinaryRef) {
-        await updateUser(
-          user.id,
-          { profilePhoto: cloudinaryRef.url },
-          getUser,
-          "DriversLicense"
-        );
+        await updateUser(user.id, { profilePhoto: cloudinaryRef.url }, getUser);
       }
       setLoadingState(false);
-    } else {
-      navigation.navigate("DriversLicense");
+      navigation.navigate("mainFlow");
     }
   };
 

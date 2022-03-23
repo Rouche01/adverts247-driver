@@ -55,7 +55,7 @@ const SigninScreen = ({ navigation }) => {
   };
 
   const {
-    state: { loading, errorMessage },
+    state: { loading, signinError },
     signin,
     clearErrorMessage,
   } = useContext(AuthContext);
@@ -76,20 +76,18 @@ const SigninScreen = ({ navigation }) => {
     };
   }, []);
 
+  console.log(signinError);
+
   useEffect(() => {
-    if (errorMessage) {
-      Alert.alert(
-        "Login Error",
-        "There was an error logging in, try again with the correct credentials",
-        [
-          {
-            text: "Try again",
-          },
-        ]
-      );
-      clearErrorMessage();
+    if (signinError) {
+      Alert.alert("Login Error", signinError, [
+        {
+          text: "Try again",
+        },
+      ]);
+      clearErrorMessage("signin");
     }
-  }, [errorMessage]);
+  }, [signinError]);
 
   // console.log(state.loading);
 
@@ -109,9 +107,6 @@ const SigninScreen = ({ navigation }) => {
         validationError={validationErrors?.email || null}
         onChange={(value) => {
           setValidationErrors({ ...validationErrors, email: "" });
-          if (errorMessage) {
-            clearErrorMessage();
-          }
           setEmail(value);
         }}
         margin={10}
@@ -124,9 +119,6 @@ const SigninScreen = ({ navigation }) => {
         validationError={validationErrors?.password || null}
         onChange={(value) => {
           setValidationErrors({ ...validationErrors, password: "" });
-          if (errorMessage) {
-            clearErrorMessage();
-          }
           setPassword(value);
         }}
         secureTextEntry={true}

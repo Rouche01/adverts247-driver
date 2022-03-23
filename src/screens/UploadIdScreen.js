@@ -39,10 +39,6 @@ const UploadIdScreen = ({ navigation }) => {
     if (user) {
       setFirstName(user.name.split(" ")[0]);
     }
-
-    return () => {
-      setUploading(false);
-    };
   }, []);
 
   const goToHelp = () => {
@@ -50,17 +46,12 @@ const UploadIdScreen = ({ navigation }) => {
   };
 
   const saveDriverIdAndNavigate = async () => {
-    console.log("navigating to main app");
     if (image) {
       setUploading(true);
       const cloudinaryRef = await handleUpload(image);
-      await updateUser(
-        user.id,
-        { driversValidId: cloudinaryRef.url },
-        getUser,
-        "ProfilePhoto"
-      );
+      await updateUser(user.id, { driversValidId: cloudinaryRef.url }, getUser);
       setUploading(false);
+      navigation.navigate("ProfilePhoto");
     }
   };
 
