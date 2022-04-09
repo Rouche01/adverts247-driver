@@ -19,7 +19,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.adverts247.driverapp",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "For a reliable trip, Adverts247 collects location data for every trip. This helps for better compensation, support and more",
+        "NSPhotoLibraryUsageDescription": "Adverts247 requires access to Photos to add profile picture and validate your ID"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -30,7 +34,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.adverts247.driverapp",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
