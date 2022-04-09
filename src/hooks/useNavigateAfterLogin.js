@@ -9,14 +9,16 @@ export default (email, password) => {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    const { driversValidId, profilePhoto } = user;
+    if (user) {
+      const { driversValidId, profilePhoto } = user;
 
-    if (driversValidId && profilePhoto) {
-      customNavigate("mainFlow");
-    } else if (driversValidId) {
-      customNavigate("ProfilePhoto");
-    } else {
-      customNavigate("UploadId");
+      if (driversValidId && profilePhoto) {
+        customNavigate("mainFlow");
+      } else if (driversValidId) {
+        customNavigate("ProfilePhoto");
+      } else {
+        customNavigate("UploadId");
+      }
     }
   }, [user]);
 

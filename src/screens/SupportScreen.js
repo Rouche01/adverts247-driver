@@ -34,7 +34,7 @@ const SupportScreen = () => {
             <Text style={styles.titleText}>Contact Us</Text>
             <View style={styles.contactForm}>
                 <Text style={styles.label}>Your Message</Text>
-                <TextInput 
+                <TextInput
                     style={styles.supportInput}
                     multiline={true}
                     textAlignVertical='top'
@@ -42,7 +42,7 @@ const SupportScreen = () => {
                     value={supportMessage}
                     onChangeText={setSupportMessage}
                 />
-                <Button 
+                <Button
                     title="SEND MESSAGE"
                     containerStyle={{ marginTop: hp('5%') }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
@@ -77,9 +77,10 @@ const styles = StyleSheet.create({
     supportInput: {
         width: '100%',
         backgroundColor: '#E3E3E3',
+        height: hp("25%"),
         borderRadius: 5,
         marginTop: 15,
-        paddingHorizontal: 20,
+        paddingHorizontal: hp('2%'),
         paddingVertical: 20,
         fontSize: hp('2.2%')
     }

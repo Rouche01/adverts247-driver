@@ -13,14 +13,14 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 const AddAccountScreen = () => {
 
-    const { 
-        state: { bankList, userAccountDetails, loading, recipientCode }, 
-        getBankList, 
+    const {
+        state: { bankList, userAccountDetails, loading, recipientCode },
+        getBankList,
         confirmUserAccount,
-        clearAccountDetails, 
-        createRecipient 
+        clearAccountDetails,
+        createRecipient
     } = useContext(PaymentContext);
-    
+
     const { updateUser } = useContext(UserContext);
     const { state: { user }, getUser } = useContext(AuthContext);
     const [ pickedBank, setPickedBank ] = useState(null);
@@ -38,7 +38,7 @@ const AddAccountScreen = () => {
         } else {
             setButtonDisable(true);
         }
-        
+
     }, [pickedBank, accountNumber])
 
     useEffect(() => {
@@ -99,14 +99,14 @@ const AddAccountScreen = () => {
             recipientCode
         }
 
-        await updateUser(user._id, {bankInformation}, getUser);
+        await updateUser(user.id, {bankInformation}, getUser);
         setLoadSaveAccount(false);
     }
 
 
     const removeBankAccount = async() => {
         setLoadSaveAccount(true);
-        await updateUser(user._id, {bankInformation: {}, withdrawalCode: ''}, getUser);
+        await updateUser(user.id, {bankInformation: {}, withdrawalCode: ''}, getUser);
         setPickedBank(null);
         clearAccountDetails();
         setAccountNumber('');
@@ -122,21 +122,21 @@ const AddAccountScreen = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" 
-                translucent={true} 
+            <StatusBar backgroundColor="rgba(0, 0, 0, 0.2)"
+                translucent={true}
                 barStyle="light-content"
                 animated={true}
             />
             { !hasBankInfo ? <View>
                 <TouchableOpacity onPress={() => setToggleModal(!toggleModal)}>
                     <View style={styles.selectInput}>
-                        { !pickedBank ? <Text style={styles.placeholder}>Select a Bank</Text> : 
+                        { !pickedBank ? <Text style={styles.placeholder}>Select a Bank</Text> :
                             <Text style={styles.selectedValue}>{pickedBank.name}</Text>
                         }
                         <FontAwesome name="caret-down" size={20} color="gray" />
                     </View>
                 </TouchableOpacity>
-                <CustomInput 
+                <CustomInput
                     label="Account Number"
                     margin={0}
                     value={accountNumber}
@@ -145,7 +145,7 @@ const AddAccountScreen = () => {
                     onChange={setAccountNumber}
                     keyboard='number-pad'
                 />
-                { !accountName ? <Button 
+                { !accountName ? <Button
                     title="CONFIRM ACCOUNT"
                     containerStyle={{ marginTop: 20 }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
@@ -157,7 +157,7 @@ const AddAccountScreen = () => {
                     onPress={() => confirmBankAccount()}
                 /> :
                 <View>
-                    <CustomInput 
+                    <CustomInput
                     label="Account Name"
                     margin={0}
                     value={accountName}
@@ -166,7 +166,7 @@ const AddAccountScreen = () => {
                     onChange={setAccountName}
                     editable={true}
                 />
-                <Button 
+                <Button
                     title="ADD ACCOUNT"
                     containerStyle={{ marginTop: 50 }}
                     buttonStyle={{ padding: 15, backgroundColor: 'black', borderRadius: 8 }}
@@ -179,15 +179,15 @@ const AddAccountScreen = () => {
                 />
                 </View>
                 }
-                <PickerModal 
-                    visible={toggleModal} 
+                <PickerModal
+                    visible={toggleModal}
                     onClose={() => setToggleModal(!toggleModal)}
                     items={bankList}
                     onSelect={selectBank}
                     selectedValue={ pickedBank ? pickedBank.name : ` `}
                 />
             </View> :
-            <SetFormState bankName={user.bankInformation.bank && user.bankInformation.bank.name} 
+            <SetFormState bankName={user.bankInformation.bank && user.bankInformation.bank.name}
                 accountNumber={user.bankInformation.accountNumber && user.bankInformation.accountNumber}
                 accountName={user.bankInformation.accountName && user.bankInformation.accountName}
                 btnTitle='REMOVE ACCOUNT'

@@ -193,9 +193,9 @@ const SignupScreen = ({ navigation }) => {
         title="CONTINUE"
         containerStyle={{
           marginTop: 30,
-          flex: 1,
+          flex: 1.5,
           marginHorizontal: 10,
-          marginBottom: 60,
+          marginBottom: 30,
         }}
         buttonStyle={{ backgroundColor: "rgb(33,36,39)", padding: 15 }}
         titleStyle={{ fontSize: hp("2%") }}

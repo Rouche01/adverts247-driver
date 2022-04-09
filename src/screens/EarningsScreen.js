@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     marginTop: hp("19%"),
     borderRadius: 8,
+    height: hp("14.5%"),
     paddingHorizontal: wp("6%"),
     paddingVertical: hp("2.4%"),
   },

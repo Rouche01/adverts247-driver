@@ -100,8 +100,7 @@ const InformationScreen = ({ navigation }) => {
     // console.log(data);
 
     if (Object.keys(data).length > 0) {
-      // console.log(data);
-      await updateUser(user._id, data, getUser);
+      await updateUser(user.id, data, getUser);
     }
     setLoadingState(false);
   };

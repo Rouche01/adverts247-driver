@@ -32,7 +32,7 @@ const DriversLicenseScreen = ({ navigation }) => {
       const cloudinaryRef = await handleUpload(image);
       // console.log(cloudinaryRef);
       await updateUser(
-        state.user._id,
+        state.user.id,
         { driversLicense: cloudinaryRef.url },
         getUser,
         "InsuranceCert"

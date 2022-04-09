@@ -25,7 +25,7 @@ const InsuranceCertScreen = ({ navigation }) => {
             setLoadingState(true);
             const cloudinaryRef = await handleUpload(image);
             // console.log(cloudinaryRef);
-            await updateUser(state.user._id, { insuranceCert: cloudinaryRef.url }, getUser, 'VehicleReg');
+            await updateUser(state.user.id, { insuranceCert: cloudinaryRef.url }, getUser, 'VehicleReg');
             setLoadingState(false)
         } else {
             navigation.navigate('VehicleReg');
@@ -36,7 +36,7 @@ const InsuranceCertScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <DocumentUpload 
+            <DocumentUpload
                 title="Take a photo of your Vehicle Insurance Certificate"
                 subtitle="This docuemnt should say “certificate of insurance” at the top, and will list your coverage limits,it also usually has the names of drivers who are listed in the insurance policy."
                 placeholder={require('../assets/InsuranceCert.png')}
@@ -44,7 +44,7 @@ const InsuranceCertScreen = ({ navigation }) => {
                 dbImage={state.user.insuranceCert}
                 buttonPress={handleImagePick}
             />
-            <Button 
+            <Button
                 onPress={() => saveInsuranceCert()}
                 loading={loadingState}
                 disabled={buttonDisable}
@@ -65,7 +65,7 @@ InsuranceCertScreen.navigationOptions = {
     headerTitle: '',
     headerTintColor: '#fff',
     headerRight: () => (
-        <Button 
+        <Button
             title='Help'
             containerStyle={{ marginRight: 20, borderRadius: 8 }}
             buttonStyle={{ backgroundColor: '#fff', paddingHorizontal: 25 }}
