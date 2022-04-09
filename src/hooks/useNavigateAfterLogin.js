@@ -1,36 +1,28 @@
-import { useContext, useEffect } from 'react';
-import { Context as AuthContext } from '../context/AuthContext';
-import { customNavigate } from '../navigationRef';
-
+import { useContext, useEffect } from "react";
+import { Context as AuthContext } from "../context/AuthContext";
+import { customNavigate } from "../navigationRef";
 
 export default (email, password) => {
+  const {
+    state: { user },
+    getUser,
+  } = useContext(AuthContext);
 
-    const { state: { user }, getUser } = useContext(AuthContext);
-    
-    useEffect(() => {
+  useEffect(() => {
+    const { driversValidId, profilePhoto } = user;
 
-        if(user) {
-            const { profilePhoto, insuranceCert, driversLicense, vehicleReg} = user;
-
-            if(profilePhoto && insuranceCert && driversLicense && vehicleReg) {
-                customNavigate('mainFlow');
-            } else {
-                customNavigate('SetupIndex');
-            }
-        }
-
-    }, [user])
-
-    const signInAndNavigate = (signinFunc) => {
-
-        if(email && password) {
-            signinFunc({email, password}, getUser);
-        } else {
-            signinFunc(getUser);
-        }
-        
+    if (driversValidId && profilePhoto) {
+      customNavigate("mainFlow");
+    } else if (driversValidId) {
+      customNavigate("ProfilePhoto");
+    } else {
+      customNavigate("UploadId");
     }
+  }, [user]);
 
+  const signInAndNavigate = (signinFunc) => {
+    signinFunc({ email, password }, getUser);
+  };
 
-    return [ signInAndNavigate ];
-}
+  return [signInAndNavigate];
+};

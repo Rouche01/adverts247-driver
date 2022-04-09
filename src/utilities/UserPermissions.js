@@ -29,7 +29,7 @@ export const getLocationPermission = async() => {
 }
 
 export const checkCameraPermission = async() => {
-    const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+    const { status } = await Permissions.getAsync(Permissions.MEDIA_LIBRARY);
     if(status === "granted") {
         return true;
     } else {

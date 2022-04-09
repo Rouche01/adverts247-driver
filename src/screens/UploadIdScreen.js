@@ -20,10 +20,27 @@ import IdPlaceholder from "../components/IdPlaceholder";
 import useImagePicker from "../hooks/useImagePicker";
 import { useDisableSettings } from "../hooks/useDisableButton";
 import useCloudinary from "../hooks/useCloudinary";
+import {
+  checkCameraPermission,
+  checkLocationPermission,
+} from "../utilities/UserPermissions";
 
 const UploadIdScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState();
   const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const cameraPermission = await checkCameraPermission();
+      const locationPermission = await checkLocationPermission();
+
+      // console.log(cameraPermission, locationPermission);
+
+      if (!cameraPermission || !locationPermission) {
+        navigation.navigate("Gateway");
+      }
+    })();
+  }, []);
 
   const {
     state: { user },
