@@ -2,8 +2,6 @@ import * as Permissions from "expo-permissions";
 
 export const getCameraPermission = async () => {
   const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
-
-  console.log(status);
   return status;
 };
 
