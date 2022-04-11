@@ -211,6 +211,7 @@ SignupScreen.navigationOptions = {
     backgroundColor: "rgb(33,36,39)",
   },
   headerTintColor: "#fff",
+  headerBackTitleVisible: false,
 };
 
 const styles = StyleSheet.create({

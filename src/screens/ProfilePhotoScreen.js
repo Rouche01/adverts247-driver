@@ -153,6 +153,7 @@ ProfilePhotoScreen.navigationOptions = {
       titleStyle={{ color: "#000" }}
     />
   ),
+  headerBackTitleVisible: false,
 };
 
 const styles = StyleSheet.create({

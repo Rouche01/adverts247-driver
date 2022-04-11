@@ -205,6 +205,8 @@ AddAccountScreen.navigationOptions = {
         backgroundColor: 'rgb(33,36,39)',
     },
     headerTitle: 'Add Bank Account',
+    headerBackTitle: 'Earnings',
+    headerBackTitleVisible: false,
     headerTintColor: '#fff',
 }
 

@@ -33,12 +33,12 @@ const TransactionsScreen = () => {
 
     return (
         <View style={styles.container}>
-            <StatusBar translucent={true} 
-                animated={true} 
-                backgroundColor="rgba(0, 0, 0, 0.2)" 
+            <StatusBar translucent={true}
+                animated={true}
+                backgroundColor="rgba(0, 0, 0, 0.2)"
                 barStyle="light-content"
             />
-            <FlatList 
+            <FlatList
                 data={dummyTransactions}
                 keyExtractor={(item) => item.time}
                 renderItem={({ item }) => {
@@ -62,11 +62,11 @@ const TransactionsScreen = () => {
                         }
                     }
 
-                    return <SingleTransaction 
+                    return <SingleTransaction
                         statusStyle={statusStyle}
-                        amount={item.amount} 
-                        time={item.time} 
-                        status={item.status} 
+                        amount={item.amount}
+                        time={item.time}
+                        status={item.status}
                     />
                 }}
             />
@@ -80,6 +80,8 @@ TransactionsScreen.navigationOptions = {
         backgroundColor: 'rgb(33,36,39)',
     },
     headerTintColor: '#fff',
+    headerBackTitle: 'Profile',
+    headerBackTitleVisible: false,
 }
 
 
