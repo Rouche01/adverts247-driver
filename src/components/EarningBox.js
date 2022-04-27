@@ -11,7 +11,7 @@ import {
   MenuOptions,
   renderers,
 } from "react-native-popup-menu";
-import { FontAwesome } from "@expo/vector-icons";
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const CustomMenu = (props) => {
   const customStyles = {

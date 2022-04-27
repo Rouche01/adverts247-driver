@@ -10,11 +10,9 @@ import {
   StatusBar,
 } from "react-native";
 import { Button } from "react-native-elements";
-import { Feather } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Context as AuthContext } from "../context/AuthContext";
 import { Context as PaymentContext } from "../context/PaymentContext";
-import { Context as UserContext } from "../context/UserInfoContext";
 import InfoBox from "../components/InfoBox";
 import { withNavigation } from "react-navigation";
 import {

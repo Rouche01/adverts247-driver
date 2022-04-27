@@ -76,8 +76,6 @@ const SigninScreen = ({ navigation }) => {
     };
   }, []);
 
-  console.log(signinError);
-
   useEffect(() => {
     if (signinError) {
       Alert.alert("Login Error", signinError, [

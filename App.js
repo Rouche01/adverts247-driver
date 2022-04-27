@@ -13,23 +13,17 @@ import { Provider as PaymentProvider } from "./src/context/PaymentContext";
 import { Provider as MessageProvider } from "./src/context/MessageContext";
 import { Provider as StreamingProvider } from "./src/context/StreamingContext";
 import { MenuProvider } from "react-native-popup-menu";
-import SetupIndexScreen from "./src/screens/SetupIndexScreen";
 import { setNavigator } from "./src/navigationRef";
 import ProfilePhotoScreen from "./src/screens/ProfilePhotoScreen";
-import DriversLicenseScreen from "./src/screens/DriversLicenseScreen";
-import InsuranceCertScreen from "./src/screens/InsuranceCertScreen";
-import VehicleRegScreen from "./src/screens/VehicleRegScreen";
 import TripsScreen from "./src/screens/TripsScreen";
 import PreAuthScreen from "./src/screens/PreAuthScreen";
 import EarningsScreen from "./src/screens/EarningsScreen";
 import InformationScreen from "./src/screens/InformationScreen";
 import SupportScreen from "./src/screens/SupportScreen";
-import {
-  MaterialIcons,
-  AntDesign,
-  FontAwesome,
-  Feather,
-} from "@expo/vector-icons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Feather from "react-native-vector-icons/Feather";
 import AddAccountScreen from "./src/screens/AddAccountScreen";
 import TransactionsScreen from "./src/screens/TransactionsScreen";
 import GatewayScreen from "./src/screens/GatewayScreen";

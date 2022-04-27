@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import {Context as UserContext } from '../context/UserInfoContext';
 import { Context as PaymentContext } from '../context/PaymentContext';
 import { Context as AuthContext } from '../context/AuthContext';
-import { FontAwesome } from '@expo/vector-icons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import PickerModal from '../components/PickerModal';
 import CustomInput from '../components/CustomInput';
 import SetFormState from '../components/SetFormState';
