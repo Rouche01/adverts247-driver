@@ -11,14 +11,14 @@ const AuthPromptScreen = ({ navigation }) => {
             {/* <Text h1>Hello</Text> */}
             <StatusBar backgroundColor="rgba(0, 0, 0, 0)" animated={true} translucent={true} />
             <View style={styles.backgroundStyle}>
-               <ImageBackground 
+               <ImageBackground
                     source={require('../assets/driver-landing.jpg')}
                     style={{ flex: 1, resizeMode: 'cover' }}
                 >
                     <View style={styles.overlayStyle}>
-                        <Image 
+                        <Image
                             style={styles.logoStyle}
-                            source={require('../assets/logo.png')} 
+                            source={require('../assets/logo.png')}
                         />
                     </View>
                </ImageBackground>
@@ -26,22 +26,22 @@ const AuthPromptScreen = ({ navigation }) => {
             <View style={styles.callToActionWrapper}>
                 <Text style={styles.welcomeText}>Welcome to Adverts247</Text>
                 <View style={styles.buttonContainer}>
-                    <Button 
+                    <Button
                         onPress={() => navigation.navigate('Signin')}
-                        containerStyle={{ flex: 1, marginRight: 15 }} 
+                        containerStyle={{ flex: 1, marginRight: 15 }}
                         buttonStyle={{ padding: 14, backgroundColor: '#FF3B30' }}
                         titleStyle={styles.buttonTitle}
-                        title="SIGN IN" 
+                        title="SIGN IN"
                     />
-                    <Button 
+                    <Button
                         onPress={() => navigation.navigate('Signup')}
-                        containerStyle={{ flex: 1 }} 
-                        buttonStyle={{ padding: 14, backgroundColor: '#FFF' }} 
+                        containerStyle={{ flex: 1 }}
+                        buttonStyle={{ padding: 14, backgroundColor: '#FFF' }}
                         titleStyle={styles.buttonTitle}
-                        title="REGISTER" 
+                        title="REGISTER"
                     />
                 </View>
-            </View>     
+            </View>
         </View>
     );
 }
@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     overlayStyle: {
-        height: '100%', 
-        width: '100%', 
+        height: '100%',
+        width: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     logoStyle: {
         marginLeft: 30,
         position: 'absolute',
         top: hp('8.5%')
-    },  
+    },
     backgroundStyle: {
         flex: 1,
     },
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
         fontWeight: 'normal'
     },
     buttonContainer: {
-        flexDirection: 'row', 
-        marginTop: 30 
+        flexDirection: 'row',
+        marginTop: 30
     },
     buttonTitle: {
-        color: 'black', 
+        color: 'black',
         fontSize: hp('2.2%')
     }
 });

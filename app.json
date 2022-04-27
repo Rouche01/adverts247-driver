@@ -8,7 +8,7 @@
     "icon": "./assets/icon.png",
     "description": "This is the mobile app for drivers onboarded to Adverts247, the app is to track and measure trips and earnings",
     "splash": {
-      "image": "./src/assets/splash.png",
+      "image": "./src/assets/splash-invert.png",
       "backgroundColor": "#000",
       "resizeMode": "cover"
     },
