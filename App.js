@@ -29,6 +29,9 @@ import TransactionsScreen from "./src/screens/TransactionsScreen";
 import GatewayScreen from "./src/screens/GatewayScreen";
 import ExtraInfoScreen from "./src/screens/ExtraInfoScreen";
 import UploadIdScreen from "./src/screens/UploadIdScreen";
+import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
+import ResetTokenScreen from "./src/screens/ResetTokenScreen";
+import ResetPasswordScreen from "./src/screens/ResetPassword";
 
 if (Platform.OS === "android") {
   // only android needs polyfill
@@ -41,6 +44,26 @@ const navigator = createSwitchNavigator({
     PreAuth: PreAuthScreen,
     AuthPrompt: AuthPromptScreen,
     Signup: SignupScreen,
+    forgotPasswordFlow: createStackNavigator(
+      {
+        ForgotPassword: ForgetPasswordScreen,
+        ResetToken: ResetTokenScreen,
+        ResetPassword: ResetPasswordScreen,
+      },
+      {
+        headerMode: "none",
+        navigationOptions: ({ navigation }) => {
+          const { index } = navigation.state;
+          return {
+            headerTitle: index > 0 ? "Reset Password" : "Forgot Password",
+            headerStyle: {
+              backgroundColor: "rgb(33,36,39)",
+            },
+            headerTintColor: "#fff",
+          };
+        },
+      }
+    ),
     ExtraInfo: ExtraInfoScreen,
     Signin: SigninScreen,
   }),
