@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { StyleSheet, View, Text, StatusBar } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, View, Text, StatusBar, Alert } from "react-native";
 import { Button } from "react-native-elements";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import CustomInput from "../components/CustomInput";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const ForgetPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,23 @@ const ForgetPasswordScreen = ({ navigation }) => {
   const [validationErrors, setValidationErrors] = useState({
     email: "",
   });
+
+  const {
+    state: { loading, genericError },
+    generateResetPasswordToken,
+    clearGenericError,
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (genericError) {
+      Alert.alert("Error", genericError, [
+        {
+          text: "OK",
+        },
+      ]);
+      clearGenericError();
+    }
+  }, [genericError]);
 
   const validateInput = () => {
     let validMail =
@@ -40,12 +58,11 @@ const ForgetPasswordScreen = ({ navigation }) => {
     }
   };
 
-  const receiveResetToken = () => {
+  const receiveResetToken = async () => {
     const validated = validateInput();
 
     if (validated) {
-      console.log("reset token sent");
-      navigation.navigate("ResetToken");
+      await generateResetPasswordToken(email);
     }
   };
 
@@ -78,7 +95,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
           containerStyle={{ marginTop: 20, marginHorizontal: 10 }}
           buttonStyle={{ backgroundColor: "rgb(33,36,39)", padding: 15 }}
           titleStyle={{ fontSize: hp("2%") }}
-          loading={false}
+          loading={loading}
         />
       </View>
     </View>

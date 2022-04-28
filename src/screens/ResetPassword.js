@@ -1,20 +1,40 @@
-import React, { useState } from "react";
-import { StyleSheet, View, StatusBar, Text } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
+import { StyleSheet, View, StatusBar, Text, Alert } from "react-native";
 import { Button } from "react-native-elements";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import CustomInput from "../components/CustomInput";
+import { Context as AuthContext } from "../context/AuthContext";
 
-const ResetPassword = () => {
+const ResetPassword = ({ navigation }) => {
   const [password, setPassword] = useState();
   const [passwordRetyped, setPasswordRetyped] = useState();
+
+  const { userId } = navigation.state.params;
+
+  const {
+    state: { loading, genericError },
+    resetPassword,
+    clearGenericError,
+  } = useContext(AuthContext);
 
   const [validationErrors, setValidationErrors] = useState({
     password: "",
     passwordRetyped: "",
   });
+
+  useEffect(() => {
+    if (genericError) {
+      Alert.alert("Error", genericError, [
+        {
+          text: "OK",
+        },
+      ]);
+      clearGenericError();
+    }
+  }, [genericError]);
 
   const validateInput = () => {
     const errorsInit = {};
@@ -45,11 +65,14 @@ const ResetPassword = () => {
     }
   };
 
-  const onPasswordReset = () => {
+  const onPasswordReset = async () => {
     const validated = validateInput();
 
     if (validated) {
-      console.log(password, passwordRetyped);
+      await resetPassword(password, userId);
+      Alert.alert("Success", "Your password reset was successful!", [
+        { text: "Sign in", onPress: () => navigation.navigate("Signin") },
+      ]);
     }
   };
 
@@ -94,7 +117,7 @@ const ResetPassword = () => {
           containerStyle={{ marginTop: 70, marginHorizontal: 10 }}
           buttonStyle={{ backgroundColor: "rgb(33,36,39)", padding: 15 }}
           titleStyle={{ fontSize: hp("2%") }}
-          loading={false}
+          loading={loading}
         />
       </View>
     </View>

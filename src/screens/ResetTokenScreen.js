@@ -1,24 +1,67 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, StatusBar, Text, Image } from "react-native";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  Text,
+  Image,
+  ActivityIndicator,
+  Alert,
+} from "react-native";
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
 import CodeInput from "../components/CodeInput";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const TOKEN_LENGTH = 4;
 
 const ResetTokenScreen = ({ navigation }) => {
   const [code, setCode] = useState("");
 
+  const {
+    state: { loading, genericError },
+    verifyResetToken,
+    clearGenericError,
+  } = useContext(AuthContext);
+
+  const { userId } = navigation.state.params;
+
   useEffect(() => {
-    if (code.length === 4) {
-      navigation.navigate("ResetPassword");
-    }
+    (async () => {
+      if (code.length === 4) {
+        await verifyResetToken(userId, code);
+      }
+    })();
   }, [code]);
+
+  useEffect(() => {
+    if (genericError) {
+      Alert.alert("Error", genericError, [
+        {
+          text: "OK",
+        },
+      ]);
+      clearGenericError();
+    }
+  }, [genericError]);
 
   return (
     <View style={styles.container}>
+      <View
+        style={
+          loading
+            ? { ...styles.overlayStyle, zIndex: 100 }
+            : { ...styles.overlayStyle, zIndex: -100 }
+        }
+      >
+        <ActivityIndicator
+          size="large"
+          color="black"
+          style={loading ? { display: "flex" } : { display: "none" }}
+        />
+      </View>
       <StatusBar
         backgroundColor="rgba(0, 0, 0, 0.2)"
         translucent={true}
@@ -75,6 +118,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 35,
+  },
+  overlayStyle: {
+    height: hp("100%"),
+    width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   emailIcon: {},
 });
