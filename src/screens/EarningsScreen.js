@@ -193,7 +193,7 @@ const EarningsScreen = ({ navigation }) => {
         </View>
       </View>
       <Button
-        title="WITHDRAW"
+        title="REQUEST PAYOUT"
         containerStyle={{ flex: 1, width: "100%" }}
         buttonStyle={{ padding: 15, backgroundColor: "black", borderRadius: 8 }}
         titleStyle={{ fontSize: hp("2%") }}
