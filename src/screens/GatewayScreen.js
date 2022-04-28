@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StyleSheet, View, Text, StatusBar } from "react-native";
 import { Button } from "react-native-elements";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

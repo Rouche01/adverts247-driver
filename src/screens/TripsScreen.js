@@ -12,7 +12,7 @@ import { ScrollView } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
 import { Context as StreamingContext } from "../context/StreamingContext";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { AntDesign, Feather } from "@expo/vector-icons";
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import {
   checkCameraPermission,
   checkLocationPermission,

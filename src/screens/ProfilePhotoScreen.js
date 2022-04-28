@@ -10,7 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "react-native-elements";
 import { ScrollView } from "react-navigation";
-import { AntDesign } from "@expo/vector-icons";
+import AntDesign from 'react-native-vector-icons/AntDesign'
 import useImagePicker from "../hooks/useImagePicker";
 import useCloudinary from "../hooks/useCloudinary";
 import useDisableButton from "../hooks/useDisableButton";

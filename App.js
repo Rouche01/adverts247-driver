@@ -13,28 +13,25 @@ import { Provider as PaymentProvider } from "./src/context/PaymentContext";
 import { Provider as MessageProvider } from "./src/context/MessageContext";
 import { Provider as StreamingProvider } from "./src/context/StreamingContext";
 import { MenuProvider } from "react-native-popup-menu";
-import SetupIndexScreen from "./src/screens/SetupIndexScreen";
 import { setNavigator } from "./src/navigationRef";
 import ProfilePhotoScreen from "./src/screens/ProfilePhotoScreen";
-import DriversLicenseScreen from "./src/screens/DriversLicenseScreen";
-import InsuranceCertScreen from "./src/screens/InsuranceCertScreen";
-import VehicleRegScreen from "./src/screens/VehicleRegScreen";
 import TripsScreen from "./src/screens/TripsScreen";
 import PreAuthScreen from "./src/screens/PreAuthScreen";
 import EarningsScreen from "./src/screens/EarningsScreen";
 import InformationScreen from "./src/screens/InformationScreen";
 import SupportScreen from "./src/screens/SupportScreen";
-import {
-  MaterialIcons,
-  AntDesign,
-  FontAwesome,
-  Feather,
-} from "@expo/vector-icons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Feather from "react-native-vector-icons/Feather";
 import AddAccountScreen from "./src/screens/AddAccountScreen";
 import TransactionsScreen from "./src/screens/TransactionsScreen";
 import GatewayScreen from "./src/screens/GatewayScreen";
 import ExtraInfoScreen from "./src/screens/ExtraInfoScreen";
 import UploadIdScreen from "./src/screens/UploadIdScreen";
+import ForgetPasswordScreen from "./src/screens/ForgetPasswordScreen";
+import ResetTokenScreen from "./src/screens/ResetTokenScreen";
+import ResetPasswordScreen from "./src/screens/ResetPassword";
 
 if (Platform.OS === "android") {
   // only android needs polyfill
@@ -47,6 +44,26 @@ const navigator = createSwitchNavigator({
     PreAuth: PreAuthScreen,
     AuthPrompt: AuthPromptScreen,
     Signup: SignupScreen,
+    forgotPasswordFlow: createStackNavigator(
+      {
+        ForgotPassword: ForgetPasswordScreen,
+        ResetToken: ResetTokenScreen,
+        ResetPassword: ResetPasswordScreen,
+      },
+      {
+        headerMode: "none",
+        navigationOptions: ({ navigation }) => {
+          const { index } = navigation.state;
+          return {
+            headerTitle: index > 0 ? "Reset Password" : "Forgot Password",
+            headerStyle: {
+              backgroundColor: "rgb(33,36,39)",
+            },
+            headerTintColor: "#fff",
+          };
+        },
+      }
+    ),
     ExtraInfo: ExtraInfoScreen,
     Signin: SigninScreen,
   }),

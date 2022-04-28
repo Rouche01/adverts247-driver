@@ -17,6 +17,10 @@ const authReducer = (state, action) => {
       return { ...state, signinError: "" };
     case "clear_signup_error":
       return { ...state, signupError: "" };
+    case "add_error_message":
+      return { ...state, genericError: action.payload };
+    case "clear_generic_error":
+      return { ...state, genericError: "" };
     case "get_user":
       return { ...state, user: action.payload.user };
     case "loading_state":
@@ -31,7 +35,6 @@ const authReducer = (state, action) => {
 const signin =
   (dispatch) =>
   async ({ email, password }, callback) => {
-    console.log('Works');
     dispatch({
       type: "loading_state",
       payload: true,
@@ -53,7 +56,6 @@ const signin =
         payload: false,
       });
     } catch (err) {
-      console.log(err.response.data);
       dispatch({
         type: "loading_state",
         payload: false,
@@ -66,7 +68,6 @@ const signin =
   };
 
 const signup = (dispatch) => async (signupData, callback) => {
-  console.log("---auth context---");
   dispatch({ type: "loading_state", payload: true });
   try {
     const response = await adverts247Api.post("/drivers/signup", signupData);
@@ -82,7 +83,6 @@ const signup = (dispatch) => async (signupData, callback) => {
     dispatch({ type: "loading_state", payload: false });
     customNavigate("SetupIndex");
   } catch (err) {
-    console.log(err.response.data.message);
     dispatch({ type: "loading_state", payload: false });
     dispatch({
       type: "add_signup_error",
@@ -94,7 +94,7 @@ const signup = (dispatch) => async (signupData, callback) => {
 const tryLocalSignin = (dispatch) => async (callback) => {
   try {
     const token = await AsyncStorage.getItem("token");
-    // console.log(token);
+
     if (token) {
       dispatch({
         type: "signin",
@@ -124,17 +124,16 @@ const signout = (dispatch) => async () => {
 const getUser = (dispatch) => async () => {
   try {
     const token = await AsyncStorage.getItem("token");
-    // console.log(token);
+
     const response = await adverts247Api.get("/driver", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    // console.log(response.data);
+
     dispatch({
       type: "get_user",
       payload: response.data,
     });
   } catch (err) {
-    // console.log(err.response.data.error);
     dispatch({
       type: "add_error_message",
       payload: err.response.data.error,
@@ -142,20 +141,92 @@ const getUser = (dispatch) => async () => {
   }
 };
 
-const clearErrorMessage = (dispatch) => async (authAction) => {
+const generateResetPasswordToken = (dispatch) => async (email) => {
+  dispatch({ type: "loading_state", payload: true });
+  try {
+    const response = await adverts247Api.post("/request-reset-token", {
+      email,
+    });
+
+    dispatch({ type: "loading_state", payload: false });
+
+    customNavigate("ResetToken", { userId: response.data.userId });
+  } catch (err) {
+    dispatch({ type: "loading_state", payload: false });
+    dispatch({
+      type: "add_error_message",
+      payload: err.response.data.message || "Something went wrong",
+    });
+  }
+};
+
+const verifyResetToken = (dispatch) => async (userId, token) => {
+  dispatch({ type: "loading_state", payload: true });
+  try {
+    const response = await adverts247Api.post("/verify-reset-token", {
+      token,
+      userId,
+    });
+
+    dispatch({ type: "loading_state", payload: false });
+
+    customNavigate("ResetPassword", { userId: response.data.userId });
+  } catch (err) {
+    dispatch({ type: "loading_state", payload: false });
+    dispatch({
+      type: "add_error_message",
+      payload: err.response.data.message || "Something went wrong",
+    });
+  }
+};
+
+const resetPassword = (dispatch) => async (password, userId) => {
+  dispatch({ type: "loading_state", payload: true });
+  try {
+    await adverts247Api.post("/reset-password", {
+      password,
+      userId,
+    });
+    dispatch({ type: "loading_state", payload: false });
+  } catch (err) {
+    dispatch({ type: "loading_state", payload: false });
+    dispatch({
+      type: "add_error_message",
+      payload: err.response.data.message || "Something went wrong",
+    });
+  }
+};
+
+const clearErrorMessage = (dispatch) => (authAction) => {
   const isSignin = authAction === "signin";
   dispatch({
     type: isSignin ? "clear_signin_error" : "clear_signup_error",
   });
 };
 
+const clearGenericError = (dispatch) => () => {
+  dispatch({ type: "clear_generic_error" });
+};
+
 export const { Context, Provider } = createDataContext(
   authReducer,
-  { signin, signup, tryLocalSignin, signout, clearErrorMessage, getUser },
+  {
+    signin,
+    signup,
+    tryLocalSignin,
+    signout,
+    clearErrorMessage,
+    clearGenericError,
+    getUser,
+    generateResetPasswordToken,
+    verifyResetToken,
+    resetPassword,
+  },
   {
     token: null,
     signinError: "",
     signupError: "",
+    genericError: "",
     user: null,
     loading: false,
     loggedIn: false,

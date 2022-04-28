@@ -8,7 +8,7 @@ import {
   FlatList,
   ScrollView,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,

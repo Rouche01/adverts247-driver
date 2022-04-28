@@ -76,8 +76,6 @@ const SigninScreen = ({ navigation }) => {
     };
   }, []);
 
-  console.log(signinError);
-
   useEffect(() => {
     if (signinError) {
       Alert.alert("Login Error", signinError, [
@@ -124,7 +122,7 @@ const SigninScreen = ({ navigation }) => {
         secureTextEntry={true}
         margin={10}
       />
-      <Pressable onPress={() => console.log("works")}>
+      <Pressable onPress={() => navigation.navigate("ForgotPassword")}>
         <Text style={styles.forgotPwdLink}>Forgot Password?</Text>
       </Pressable>
       <Button
